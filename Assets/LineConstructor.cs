@@ -31,10 +31,20 @@ public class LineConstructor : MonoBehaviour
             return;
         }
 
+        if (station == mStartStation || station.GetComponent<TrainStation>().HasAdjacent(mStartStation))
+        {
+            return;
+        }
         // TODO: switch to instantiating Prefab
+
         var newlineObj = new GameObject();
         var newline = newlineObj.AddComponent<TrainLine>();
         newline.SetStations(mStartStation, station);
         newlineObj.transform.parent = transform;
+
+        mStartStation.GetComponent<TrainStation>().AddAdjacent(station);
+        station.GetComponent<TrainStation>().AddAdjacent(mStartStation);
+
+        mStartStation = null;
     }
 }

@@ -33,4 +33,10 @@ public class TrainLine : MonoBehaviour
         mStation1 = stat1;
         mStation2 = stat2;
     }
+
+    void OnDestroy()
+    {
+        mStation1?.GetComponent<TrainStation>().RemoveAdjacent(mStation2);
+        mStation2?.GetComponent<TrainStation>().RemoveAdjacent(mStation1);
+    }
 }

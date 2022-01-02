@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    private List<GameObject> mAdjacentStations = new List<GameObject>();
+    private HashSet<GameObject> mAdjacentStations = new HashSet<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -40,8 +40,17 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         Debug.Log("Exiting Hover");
     }
 
+    public bool HasAdjacent(GameObject adj)
+    {
+        return mAdjacentStations.Contains(adj);
+    }
+
     public void AddAdjacent(GameObject adj)
     {
+        if (adj == transform.gameObject)
+        {
+            return;
+        }
         mAdjacentStations.Add(adj);
     }
 
