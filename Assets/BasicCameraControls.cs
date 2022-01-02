@@ -8,9 +8,9 @@ public class BasicCameraControls : MonoBehaviour
 {
     [SerializeField]
     public float speed = 5.0f;
+    public float mouseScrollY;
     private Vector3 movement = new Vector3(0, 0, -10);
     private Vector2 mMoveVec;
-
 
     // Start is called before the first frame update
     void Start()
@@ -49,14 +49,30 @@ public class BasicCameraControls : MonoBehaviour
         transform.position += new Vector3(mMoveVec.x, mMoveVec.y, 0 ) * speed;
     }
 
+    /*
+     * @Superschnizel: Do we even need this?
     public void MoveCamera(InputAction.CallbackContext input)
     {
         mMoveVec = input.ReadValue<Vector2>();
         Debug.Log(mMoveVec);
     }
+    */
 
     void OnMoveCamera(InputValue input)
     {
         mMoveVec = input.Get<Vector2>();
+    }
+
+    void OnMouseScroll(InputValue input)
+    {
+        mouseScrollY = input.Get<float>();
+        if(mouseScrollY > 0)
+        {
+            GetComponent<Camera>().orthographicSize /= mouseScrollY * 0.01f;
+        }
+        if (mouseScrollY < 0)
+        {
+            GetComponent<Camera>().orthographicSize *= mouseScrollY * -0.01f;
+        }
     }
 }
