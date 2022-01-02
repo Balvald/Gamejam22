@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg3129"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="montenegro.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview3131"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.7500982"
+     inkscape:cx="396.61473"
+     inkscape:cy="560.59326"
+     inkscape:window-width="1347"
+     inkscape:window-height="1041"
+     inkscape:window-x="2990"
+     inkscape:window-y="117"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs3126" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="Montenegro"
+       fill="#1d97e1"
+       stroke="#000000"
+       stroke-width="0.132292"
+       d="m 110.09414,136.48732 c -0.15346,0.0114 -0.32253,0.0807 -0.54557,0.24818 -1.19063,0.89297 -1.28985,1.28984 -0.79375,1.98437 0.49609,0.69454 0.29765,0.99219 -0.79375,0.69454 -1.09141,-0.29766 -1.68672,-0.59532 -2.28203,-0.0992 -0.59532,0.49609 -0.19844,0.99218 0.0992,1.19062 1.28985,0.79375 1.78594,0.99219 2.28204,0.69453 0.49609,-0.29765 0.99218,0.19844 0.89296,0.99219 -0.0992,0.79375 -0.29765,1.38906 0.79375,1.88516 1.09141,0.49609 1.88516,0.0992 1.28985,-1.09141 -0.59531,-1.19062 -1.19063,-0.69453 0.49609,-1.28984 1.68672,-0.59532 1.98438,-0.89297 2.87735,-1.78594 0.89296,-0.89297 2.77812,-1.78594 0.99218,-1.98438 -1.78593,-0.19843 -1.38906,0.59532 -3.07578,0.0992 -1.37054,-0.40322 -1.57056,-1.58459 -2.23255,-1.53802 z" />
+  </g>
+</svg>
