@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class TrainStation : MonoBehaviour
+public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     // Start is called before the first frame update
     void Start()
@@ -15,24 +16,24 @@ public class TrainStation : MonoBehaviour
     {
         
     }
-
-    void OnMouseEnter()
+    
+    public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("entered hover");
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Debug.Log("Object has been Clicked -> Left");
+            return;
+        }
+        Debug.Log("Object has been Clicked -> Right");
     }
 
-    void OnMouseExit()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("exited hover");
+        Debug.Log("hovering over Object");
     }
 
-    public void OnStartClick()
+    public void OnPointerExit(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnEndClick()
-    {
-        throw new System.NotImplementedException();
+        Debug.Log("Exiting Hover");
     }
 }
