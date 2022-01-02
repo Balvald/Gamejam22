@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    private List<GameObject> mAdjacentStations = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,8 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             Debug.Log("Object has been Clicked -> Left");
+            var constructor = FindObjectOfType<LineConstructor>();
+            constructor.HandleStationClick(transform.gameObject);
             return;
         }
         Debug.Log("Object has been Clicked -> Right");
@@ -35,5 +38,15 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     public void OnPointerExit(PointerEventData eventData)
     {
         Debug.Log("Exiting Hover");
+    }
+
+    public void AddAdjacent(GameObject adj)
+    {
+        mAdjacentStations.Add(adj);
+    }
+
+    public void RemoveAdjacent(GameObject adj)
+    {
+        mAdjacentStations.Remove(adj);
     }
 }
