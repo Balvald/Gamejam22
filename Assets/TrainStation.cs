@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrainStation : MonoBehaviour, IHoverable, IClickable
+public class TrainStation : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+        Physics.queriesHitTriggers = true;
     }
 
     // Update is called once per frame
@@ -16,14 +16,14 @@ public class TrainStation : MonoBehaviour, IHoverable, IClickable
         
     }
 
-    public void OnHoverEnter()
+    void OnMouseEnter()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("entered hover");
     }
 
-    public void OnHoverExit()
+    void OnMouseExit()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("exited hover");
     }
 
     public void OnStartClick()
