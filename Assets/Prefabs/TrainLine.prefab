@@ -47,11 +47,11 @@ MonoBehaviour:
   path:
     points:
     - {x: -0.7509631, y: 4.2210374}
-    - {x: -0.25096312, y: 4.7210374}
-    - {x: 0.7490369, y: 3.7210374}
+    - {x: 0.05769518, y: 4.682977}
+    - {x: 0.653366, y: 4.4520073}
     - {x: 1.2490369, y: 4.2210374}
     isClosed: 0
-    autoSetControlPoints: 0
+    autoSetControlPoints: 1
   anchorCol: {r: 1, g: 0, b: 0, a: 1}
   controlCol: {r: 1, g: 1, b: 1, a: 1}
   segmentCol: {r: 0, g: 1, b: 0, a: 1}
