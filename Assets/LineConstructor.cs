@@ -47,5 +47,7 @@ public class LineConstructor : MonoBehaviour
         line.transform.parent = transform;
         line.Initialize(mStartStation, station, mIdCounter);
         mIdCounter++;
+
+        mStartStation = null;
     }
 }

@@ -40,6 +40,9 @@ public class TrainLine : MonoBehaviour
         stat1.AddAdjacent(stat2);
         stat2.AddAdjacent(stat1);
 
+        stat1.AddLine(this);
+        stat2.AddLine(this);
+
         mPathCreator.CreatePathFromPositions(stat1.transform.position, stat2.transform.position);
     }
 
