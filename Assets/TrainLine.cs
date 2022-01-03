@@ -1,25 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
+[RequireComponent(typeof(PathCreator))]
 public class TrainLine : MonoBehaviour
 {
-    private GameObject mStation1;
-    private GameObject mStation2;
+    private List<TrainStation> mStations;
+
+    private PathCreator mPathCreator;
+
+    private int mIdentifier;
+
+    public int ID => mIdentifier;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        var lr = transform.gameObject.GetComponent<LineRenderer>();
-        if (lr == null)
-        {
-            lr = transform.gameObject.AddComponent<LineRenderer>();
-        }
-        // TODO: set parameters
-        lr.SetPositions(new Vector3[] {
-                mStation1.transform.position,
-                mStation2.transform.position
-            });
+        mPathCreator = GetComponent<PathCreator>();
     }
 
     // Update is called once per frame
@@ -28,15 +26,35 @@ public class TrainLine : MonoBehaviour
         
     }
 
-    public void SetStations(GameObject stat1, GameObject stat2)
+    public void Initialize(TrainStation stat1, TrainStation stat2, int id)
     {
-        mStation1 = stat1;
-        mStation2 = stat2;
+        if (mStations != null)
+        {
+            return;
+        }
+
+        mStations = new List<TrainStation>();
+        mStations.Add(stat1);
+        mStations.Add(stat2);
+
+        stat1.AddAdjacent(stat2);
+        stat2.AddAdjacent(stat1);
+
+        stat1.AddLine(this);
+        stat2.AddLine(this);
+
+        mPathCreator.CreatePathFromPositions(stat1.transform.position, stat2.transform.position);
     }
 
-    void OnDestroy()
+    public void AddStation(TrainStation station)
     {
-        mStation1?.GetComponent<TrainStation>().RemoveAdjacent(mStation2);
-        mStation2?.GetComponent<TrainStation>().RemoveAdjacent(mStation1);
+        var last = mStations.Last();
+        mStations.Add(station);
+
+        last.AddAdjacent(station);
+        station.AddAdjacent(last);
+
+        station.AddLine(this);
+        mPathCreator.AddPosition(station.transform.position);
     }
 }

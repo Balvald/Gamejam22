@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    private HashSet<GameObject> mAdjacentStations = new HashSet<GameObject>();
+    private HashSet<TrainStation> mAdjacentStations = new HashSet<TrainStation>();
+
+    private Dictionary<int, TrainLine> mConnenctedLines = new Dictionary<int, TrainLine>();
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +27,7 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         {
             Debug.Log("Object has been Clicked -> Left");
             var constructor = FindObjectOfType<LineConstructor>();
-            constructor.HandleStationClick(transform.gameObject);
+            constructor.HandleStationClick(this);
             return;
         }
         Debug.Log("Object has been Clicked -> Right");
@@ -40,22 +43,43 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         Debug.Log("Exiting Hover");
     }
 
-    public bool HasAdjacent(GameObject adj)
+    public bool HasAdjacent(TrainStation adj)
     {
         return mAdjacentStations.Contains(adj);
     }
 
-    public void AddAdjacent(GameObject adj)
+    public void AddAdjacent(TrainStation adj)
     {
-        if (adj == transform.gameObject)
+        if (adj == this)
         {
             return;
         }
         mAdjacentStations.Add(adj);
     }
-
-    public void RemoveAdjacent(GameObject adj)
+    
+    public void RemoveAdjacent(TrainStation adj)
     {
         mAdjacentStations.Remove(adj);
+    }
+
+    public TrainLine TryGetTrainLine(int id = -1)
+    {
+        if (mConnenctedLines.Count == 0)
+        {
+            return null;
+        }
+
+        if (id != -1 && mConnenctedLines.ContainsKey(id))
+        {
+            return mConnenctedLines[id];
+        }
+
+        // return just any
+        return mConnenctedLines.First().Value;
+    }
+
+    public void AddLine(TrainLine trainLine)
+    {
+        mConnenctedLines[trainLine.ID] = trainLine;
     }
 }
