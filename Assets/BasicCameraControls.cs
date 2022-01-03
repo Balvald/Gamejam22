@@ -8,7 +8,7 @@ public class BasicCameraControls : MonoBehaviour
 {
     [SerializeField]
     public float speed = 5.0f;
-    public float mouseScrollY;
+    private float mouseScrollY;
     private Vector3 movement = new Vector3(0, 0, -10);
     private Vector2 mMoveVec;
 
@@ -60,7 +60,7 @@ public class BasicCameraControls : MonoBehaviour
 
     void OnMoveCamera(InputValue input)
     {
-        mMoveVec = input.Get<Vector2>();
+        mMoveVec = input.Get<Vector2>() * GetComponent<Camera>().orthographicSize * 0.01f;
     }
 
     void OnMouseScroll(InputValue input)
