@@ -165,6 +165,12 @@ public class Path
         return new Vector2[] { points[i * 3], points[i * 3 + 1], points[i * 3 + 2], points[LoopIndex(i * 3 + 3)] };
     }
 
+    public Vector2 GetPositionInSegment(int segment, float t)
+    {
+        var p = GetPointsInSegment(segment);
+        return Bezier.EvaluateCubic(p[0], p[1], p[2], p[3], t);
+    }
+
     public void MovePoint(int i, Vector2 pos)
     {
         Vector2 deltaMove = pos - points[i];

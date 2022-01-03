@@ -223,7 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebbdc91b0c21804e89ea1a7c83ce4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPrefab: {fileID: 3025032344818256580, guid: ca2be50b4cd6ca74bbb3871861c48804, type: 3}
+  mLinePrefab: {fileID: 3025032344818256580, guid: ca2be50b4cd6ca74bbb3871861c48804, type: 3}
+  mTrainPrefab: {fileID: 8077790289338208835, guid: fe27dfaef7db4264580748096e6fb94f, type: 3}
 --- !u!1 &1015314626
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2953177251969399191, guid: 637255e0bd5ad204488f976210ee9202, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2953177251969399191, guid: 637255e0bd5ad204488f976210ee9202, type: 3}
       propertyPath: m_LocalPosition.x
@@ -571,7 +572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2953177251969399191, guid: 637255e0bd5ad204488f976210ee9202, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2953177251969399191, guid: 637255e0bd5ad204488f976210ee9202, type: 3}
       propertyPath: m_LocalPosition.x

@@ -7,7 +7,9 @@ public class LineConstructor : MonoBehaviour
     private TrainStation mStartStation;
 
     [SerializeField]
-    private GameObject myPrefab;
+    private GameObject mLinePrefab;
+    [SerializeField]
+    private GameObject mTrainPrefab;
 
     private int mIdCounter;
 
@@ -43,9 +45,15 @@ public class LineConstructor : MonoBehaviour
             return;
         }
 
-        line = Instantiate(myPrefab).GetComponent<TrainLine>();
+        line = Instantiate(mLinePrefab).GetComponent<TrainLine>();
         line.transform.parent = transform;
         line.Initialize(mStartStation, station, mIdCounter);
+
+        // Just for Testing make a Train here
+        var train = Instantiate(mTrainPrefab).GetComponent<Train>();
+        train.transform.parent = line.transform;
+        train.SetLine(line);
+
         mIdCounter++;
 
         mStartStation = null;

@@ -23,7 +23,10 @@ public class TrainLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    private void MoveTrain(Train train)
+    {
     }
 
     public void Initialize(TrainStation stat1, TrainStation stat2, int id)
@@ -56,5 +59,11 @@ public class TrainLine : MonoBehaviour
 
         station.AddLine(this);
         mPathCreator.AddPosition(station.transform.position);
+    }
+
+
+    public Path GetPath()
+    {
+        return mPathCreator.path;
     }
 }
