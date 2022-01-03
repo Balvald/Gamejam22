@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class LineConstructor : MonoBehaviour
 {
-    private GameObject mStartStation;
+    private TrainStation mStartStation;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private GameObject myPrefab;
+
+    private int mIdCounter;
 
     // Update is called once per frame
     void Update()
@@ -23,7 +22,7 @@ public class LineConstructor : MonoBehaviour
         // TODO: render preview
     }
 
-    public void HandleStationClick(GameObject station)
+    public void HandleStationClick(TrainStation station)
     {
         if (mStartStation == null)
         {
@@ -35,16 +34,18 @@ public class LineConstructor : MonoBehaviour
         {
             return;
         }
-        // TODO: switch to instantiating Prefab
 
-        var newlineObj = new GameObject();
-        var newline = newlineObj.AddComponent<TrainLine>();
-        newline.SetStations(mStartStation, station);
-        newlineObj.transform.parent = transform;
+        TrainLine line;
+        if (mStartStation.TryGetTrainLine() != null)
+        {
+            line = mStartStation.TryGetTrainLine();
+            line.AddStation(station);
+            return;
+        }
 
-        mStartStation.GetComponent<TrainStation>().AddAdjacent(station);
-        station.GetComponent<TrainStation>().AddAdjacent(mStartStation);
-
-        mStartStation = null;
+        line = Instantiate(myPrefab).GetComponent<TrainLine>();
+        line.transform.parent = transform;
+        line.Initialize(mStartStation, station, mIdCounter);
+        mIdCounter++;
     }
 }
