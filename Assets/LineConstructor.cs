@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LineConstructor : MonoBehaviour
 {
-    private TrainStation mStartStation;
+    private TrainStation mSelectedStation;
 
     [SerializeField]
     private GameObject mLinePrefab;
@@ -16,7 +16,7 @@ public class LineConstructor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (mStartStation == null)
+        if (mSelectedStation == null)
         {
             return;
         }
@@ -26,28 +26,29 @@ public class LineConstructor : MonoBehaviour
 
     public void HandleStationClick(TrainStation station)
     {
-        if (mStartStation == null)
+        if (mSelectedStation == null)
         {
-            mStartStation = station;
+            mSelectedStation = station;
             return;
         }
 
-        if (station == mStartStation || station.GetComponent<TrainStation>().HasAdjacent(mStartStation))
+        if (station == mSelectedStation || station.GetComponent<TrainStation>().HasAdjacent(mSelectedStation))
         {
+            mSelectedStation = null;
             return;
         }
 
         TrainLine line;
-        if (mStartStation.TryGetTrainLine() != null)
+        if (mSelectedStation.TryGetTrainLine() != null)
         {
-            line = mStartStation.TryGetTrainLine();
+            line = mSelectedStation.TryGetTrainLine();
             line.AddStation(station);
             return;
         }
 
         line = Instantiate(mLinePrefab).GetComponent<TrainLine>();
         line.transform.parent = transform;
-        line.Initialize(mStartStation, station, mIdCounter);
+        line.Initialize(mSelectedStation, station, mIdCounter);
 
         // Just for Testing make a Train here
         var train = Instantiate(mTrainPrefab).GetComponent<Train>();
@@ -56,6 +57,6 @@ public class LineConstructor : MonoBehaviour
 
         mIdCounter++;
 
-        mStartStation = null;
+        mSelectedStation = null;
     }
 }
