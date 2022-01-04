@@ -1,10 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 [System.Serializable]
 public class Path
 {
+
+    private float mDistanceThreshold = 0.3f;
 
     [SerializeField, HideInInspector]
     List<Vector2> points;
@@ -23,7 +28,7 @@ public class Path
             centre + Vector2.right
         };
     }
-
+    /*
     public Path(Vector2 pos1, Vector2 pos2)
     {
         points = new List<Vector2>
@@ -33,6 +38,13 @@ public class Path
             pos2+Vector2.down,
             pos2
         };
+    }
+    */
+    public Path(Vector2 pos1, Vector2 pos2)
+    {
+        points = new List<Vector2>();
+        points.Add(pos1);
+        AddSegmentTrain(pos1,pos2);
     }
 
     public Vector2 this[int i]
@@ -122,6 +134,41 @@ public class Path
         {
             AutoSetAllAffectedControlPoints(points.Count - 1);
         }
+    }
+
+    public void AddSegmentTrain(Vector2 newStation)
+    {
+        AddSegmentTrain(points.Last(), newStation);
+    }
+
+    public void AddSegmentTrain(Vector2 oldStation, Vector2 newStation)
+    {
+        var distances = newStation - oldStation;
+
+        var distx = Mathf.Abs(oldStation.x - newStation.x);
+        var disty = Mathf.Abs(oldStation.y - newStation.y);
+
+        var maxi = Mathf.Max(disty, distx);
+        var mini = Mathf.Min(distx, disty);
+
+        var relation = mini / maxi;
+
+        Vector2 p1, p2;
+
+        if (relation <= mDistanceThreshold)
+        {
+            p1 = oldStation + ((disty >= distx) ? (distances.y / 2) * Vector2.up : (distances.x / 2) * Vector2.right);
+            p2 = newStation - ((disty >= distx) ? (distances.y / 2) * Vector2.up : (distances.x / 2) * Vector2.right);
+        }
+        else
+        {
+            p1 = oldStation + distances.y * Vector2.up;
+            p2 = newStation - distances.x * Vector2.right;
+        }
+
+        points.Add(p1);
+        points.Add(p2);
+        points.Add(newStation);
     }
 
     public void SplitSegment(Vector2 anchorPos, int segmentIndex)

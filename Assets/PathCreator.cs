@@ -43,6 +43,6 @@ public class PathCreator : MonoBehaviour
     public void AddPosition(Vector3 position)
     {
         var pos = new Vector2(position.x,position.y);
-        path.AddSegment(pos);
+        path.AddSegmentTrain(pos);
     }
 }
