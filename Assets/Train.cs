@@ -62,6 +62,13 @@ public class Train : MonoBehaviour
 
         var pos = path.GetPositionInSegment(currentSegment, t);
         transform.position = new Vector3(pos.x,pos.y,0);
+
+        // look to the front
+        Vector3 relativePos = transform.position - mLastPosition;
+        Quaternion rotation = Quaternion.LookRotation(relativePos);
+        rotation.x = transform.rotation.x;
+        rotation.y = transform.rotation.y;
+        transform.rotation = rotation;
     }
 
     public enum TrainMovement
