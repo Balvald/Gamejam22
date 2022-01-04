@@ -31,6 +31,16 @@ public class ResourceManager : MonoBehaviour
     {
         mResources[type] = Mathf.Max(mResources[type] - amount, 0);
     }
+
+    public bool HasResource(ResourceType type, int amount)
+    {
+        return mResources[type] >= amount;
+    }
+
+    public int GetResourceAmount(ResourceType type)
+    {
+        return mResources[type];
+    }
 }
 
 public enum ResourceType
