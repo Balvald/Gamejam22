@@ -1649,7 +1649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc41a92e9f8222447b96ca41fe480d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTooltipString: a train station
+  mTooltipString: a train station has a very long name
 --- !u!1001 &2953177251157662889
 PrefabInstance:
   m_ObjectHideFlags: 0

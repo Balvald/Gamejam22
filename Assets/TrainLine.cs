@@ -10,6 +10,8 @@ public class TrainLine : MonoBehaviour
 
     private PathCreator mPathCreator;
 
+    private RoadCreator mRoadCreator;
+
     private int mIdentifier;
 
     public int ID => mIdentifier;
@@ -18,6 +20,7 @@ public class TrainLine : MonoBehaviour
     void Awake()
     {
         mPathCreator = GetComponent<PathCreator>();
+        mRoadCreator = GetComponent<RoadCreator>();
     }
 
     // Update is called once per frame
@@ -47,6 +50,8 @@ public class TrainLine : MonoBehaviour
         stat2.AddLine(this);
 
         mPathCreator.CreatePathFromPositions(stat1.transform.position, stat2.transform.position);
+
+        mRoadCreator.UpdateRoad();
     }
 
     public void AddStation(TrainStation station)
@@ -59,6 +64,8 @@ public class TrainLine : MonoBehaviour
 
         station.AddLine(this);
         mPathCreator.AddPosition(station.transform.position);
+
+        mRoadCreator.UpdateRoad();
     }
 
 
