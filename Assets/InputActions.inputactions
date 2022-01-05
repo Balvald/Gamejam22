@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "HomeKey",
+                    "type": "Button",
+                    "id": "4e2b0dd9-1adc-48f5-bea1-93879f6a3d7c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -126,8 +135,19 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Main",
+                    "groups": "",
                     "action": "EscapeKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "466deed1-8612-4f70-9990-d9a80000800f",
+                    "path": "<Keyboard>/home",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HomeKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
