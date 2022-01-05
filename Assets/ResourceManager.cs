@@ -22,7 +22,7 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    void AddResource(ResourceType type, int amount)
+    public void AddResource(ResourceType type, int amount)
     {
         mResources[type] += amount;
     }
@@ -37,9 +37,29 @@ public class ResourceManager : MonoBehaviour
         return mResources[type] >= amount;
     }
 
+    public bool HasResource(int iron, int coal, int money)
+    {
+        return HasResource(ResourceType.Iron, iron) && HasResource(ResourceType.Coal, coal) &&
+               HasResource(ResourceType.Money, money);
+    }
+
     public int GetResourceAmount(ResourceType type)
     {
         return mResources[type];
+    }
+
+    public bool PerformBuy(int iron, int coal, int money)
+    {
+        // TODO: this is not adaptable to more Resources
+        if (!HasResource(iron, coal, money))
+        {
+            return false;
+        }
+
+        RemoveResource(ResourceType.Iron, iron);
+        RemoveResource(ResourceType.Coal, coal);
+        RemoveResource(ResourceType.Money, money);
+        return true;
     }
 }
 

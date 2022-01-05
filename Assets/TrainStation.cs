@@ -9,6 +9,12 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     private HashSet<TrainStation> mAdjacentStations = new HashSet<TrainStation>();
 
     private Dictionary<int, TrainLine> mConnenctedLines = new Dictionary<int, TrainLine>();
+
+    [SerializeField]
+    private GameObject mLineButtonPrefab;
+
+    [SerializeField]
+    private int mMaxConnectedLines = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,22 +31,20 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            Debug.Log("Object has been Clicked -> Left");
             var constructor = FindObjectOfType<LineConstructor>();
             constructor.HandleStationClick(this);
             return;
         }
-        Debug.Log("Object has been Clicked -> Right");
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("hovering over Object");
+        
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("Exiting Hover");
+        
     }
 
     public bool HasAdjacent(TrainStation adj)
@@ -80,6 +84,11 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
     public void AddLine(TrainLine trainLine)
     {
+        if (mConnenctedLines.Count >= mMaxConnectedLines)
+        {
+            return;
+        }
+
         mConnenctedLines[trainLine.ID] = trainLine;
     }
 }
