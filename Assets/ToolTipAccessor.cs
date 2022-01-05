@@ -8,6 +8,10 @@ public class ToolTipAccessor : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField]
     private string mTooltipString = "";
 
+    public void UpdateToolTipString(string s)
+    {
+        mTooltipString = s;
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {

@@ -8,9 +8,12 @@ public class TrainStationManager : MonoBehaviour
 {
     public GameObject trainStationPrefab;
     public GameObject CSVHandler;
-    public string datapath = "./Assets/test.csv";
+    public string datapath;
     public List<string[]> StationData;
-    private CultureInfo cul = CultureInfo.InvariantCulture;
+
+    // Culture Crap: Needed to force that we use decimal points when converting numbers to strings and back.
+    private CultureInfo cul = CultureInfo.InvariantCulture; // using this in Parse forces it to read a "." as a decimal point if the string parsed is indeed a number
+    NumberFormatInfo nfi = new NumberFormatInfo(); // We need a number format to force toString to write decimal points "." instead of decimal commas ",".
 
    // Idea creating all the stations we have at the start.
    // Player selects the first station as his Main hub from where his trian empire expands.
@@ -32,39 +35,53 @@ public class TrainStationManager : MonoBehaviour
 
     void Awake()
     {
-        ReadCSV script = CSVHandler.GetComponent<ReadCSV>();
-        StationData = script.ReadCSVFile(datapath);
+        // Set Number Format Info accordingly.
+        nfi.NumberDecimalSeparator = ".";
+        //GetGeoStationData();
+        GetGameStationData();
     }
 
     void Start()
     {
-        CreateStations(StationData);
+        CreateStations(StationData, false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // pass
     }
 
-
-    //public void UpdateStationData(Transform Container.transform)
-    //{
-    //    foreach (Transform item in Container.transform)
-    //    {
-    //        //Do stuff
-    //    }
-    //}
-
-
-    public void CreateStations(List<string[]> trainStationData)
+    void GetGeoStationData()
     {
+        ReadCSV script = CSVHandler.GetComponent<ReadCSV>();
+        StationData = script.ReadCSVFile(datapath);
+    }
+
+    void GetGameStationData()
+    {
+        ReadCSV script = CSVHandler.GetComponent<ReadCSV>();
+        StationData = script.ReadCustomCSVFile(datapath);
+    }
+
+    public void CreateStations(List<string[]> trainStationData, bool geo)
+    {
+        Debug.Log("Creating Stations");
+        Vector3 offset = new Vector3(0, 0, 0);
+        float factor = 1.0f;
+        if (geo)
+        {
+            offset = new Vector3(-3951, -52714, -4);
+            factor = 0.01f;
+        }
         foreach (string[] data in trainStationData)
         {
-            Vector3 currentTrainStationPosition = new Vector3(float.Parse(data[1], cul) * 0.01f, float.Parse(data[2], cul) * 0.01f, 0) + new Vector3(-3951, -52714, -4);
+            Debug.Log("Creating: " + data[0] + " at: " + data[1] + " ; " + data[2]);
+            Vector3 currentTrainStationPosition = new Vector3(float.Parse(data[1], cul) * factor, float.Parse(data[2], cul) * factor, 0) + offset;
             var currentTrainStation = Instantiate(trainStationPrefab, currentTrainStationPosition, Quaternion.identity);
             currentTrainStation.name = data[0];
             currentTrainStation.transform.SetParent(transform, false);
+            currentTrainStation.AddComponent<ToolTipAccessor>().UpdateToolTipString(currentTrainStation.name);
         }
     }
 
@@ -78,4 +95,20 @@ public class TrainStationManager : MonoBehaviour
         trainStation.SetActive(false);
     }
 
+    public void UpdateStationData()
+    {
+        StationData = new List<string[]>();
+
+        foreach (Transform station in transform)
+        {
+            StationData.Add(new string[] {station.name, station.position.x.ToString(nfi), station.position.y.ToString(nfi) });
+        }
+    }
+
+    public void SaveStationData()
+    {
+        UpdateStationData();
+        WriteCSV script = CSVHandler.GetComponent<WriteCSV>();
+        script.WriteCSVofCurrentlyDisplayedStations(StationData);
+    }
 }
