@@ -47,12 +47,12 @@ public class LineConstructor : MonoBehaviour
         }
 
         line = Instantiate(mLinePrefab).GetComponent<TrainLine>();
-        line.transform.parent = transform;
+        line.transform.SetParent(transform, false);
         line.Initialize(mSelectedStation, station, mIdCounter);
 
         // Just for Testing make a Train here
         var train = Instantiate(mTrainPrefab).GetComponent<Train>();
-        train.transform.parent = line.transform;
+        train.transform.SetParent(line.transform, false);
         train.SetLine(line);
 
         mIdCounter++;

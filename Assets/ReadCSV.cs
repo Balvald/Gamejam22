@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ReadCSV : MonoBehaviour
 {
+    public string LoadPath;
+
     public List<string[]> StationData = new List<string[]>();
 
     public List<string[]> ReadCSVFile(string path)
@@ -44,13 +46,12 @@ public class ReadCSV : MonoBehaviour
                 break;
             }
             string[] values = data.Split(';');
-            Debug.Log(values[0] + " " + values[1] + " " + values[2]);
-            StationData.Add(new string[] { values[0], values[1], values[2] }); // Name, Geo X pos, Geo Y pos
+            Debug.Log(values[0] + " " + values[1] + " " + values[2] + " " + values[3]);
+            StationData.Add(new string[] { values[0], values[1], values[2] , values[3]}); // Name, Geo X pos, Geo Y pos
         }
 
         streamReader.Close();
 
         return StationData;
     }
-
 }

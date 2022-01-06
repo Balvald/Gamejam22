@@ -10,7 +10,9 @@ using TMPro;
 public class TrainStationManager : MonoBehaviour
 {
     public GameObject trainStationPrefab;
+    public GameObject PayWallPrefab;
     public GameObject CSVHandler;
+    public GameObject UnlockableStationParent;
     public GameObject inputField;
     public string datapath;
     public List<string[]> StationData;
@@ -83,12 +85,27 @@ public class TrainStationManager : MonoBehaviour
         {
             Debug.Log("Creating: " + data[0] + " at: " + data[1] + " ; " + data[2]);
             Vector3 currentTrainStationPosition = new Vector3(float.Parse(data[1], cul) * factor, float.Parse(data[2], cul) * factor, 0) + offset;
-            var currentTrainStation = Instantiate(trainStationPrefab, currentTrainStationPosition, Quaternion.identity);
+            GameObject currentTrainStation = Instantiate(trainStationPrefab, currentTrainStationPosition, Quaternion.identity);
             currentTrainStation.name = data[0];
             currentTrainStation.transform.localScale = new Vector3(5, 5, 1);
             //currentTrainStation.transform.SetParent(transform, false);
             currentTrainStation.AddComponent<ToolTipAccessor>().UpdateToolTipString(currentTrainStation.name);
+
+            if (data[3] == "0") // Station is not unlocked yet: Need to create Paywall
+            {
+                var newUnlockableStationPaywall = Instantiate(PayWallPrefab, currentTrainStationPosition, Quaternion.identity);
+                newUnlockableStationPaywall.transform.SetParent(UnlockableStationParent.transform, true);
+                newUnlockableStationPaywall.transform.localScale = new Vector3(5, 5, 1);
+                newUnlockableStationPaywall.GetComponent<PayWall>().SetObjectToUnlock(currentTrainStation);
+                newUnlockableStationPaywall.AddComponent<ToolTipAccessor>().UpdateToolTipString(currentTrainStation.name + " (Not Owned)");
+                currentTrainStation.transform.SetParent(newUnlockableStationPaywall.transform, true);
+            }
         }
+    }
+
+    void MakeUnlockableStation()
+    {
+        // Create the unlockable station with the paywall.
     }
 
     public void SetStationInactive(GameObject trainStation)
@@ -105,7 +122,7 @@ public class TrainStationManager : MonoBehaviour
     {
         StationData = new List<string[]>();
 
-        object[] potentialStations = GameObject.FindSceneObjectsOfType(typeof(GameObject));
+        object[] potentialStations = GameObject.FindObjectsOfType(typeof(GameObject));
         foreach (object station in potentialStations)
         {
             GameObject gameObject = (GameObject)station;
@@ -114,7 +131,19 @@ public class TrainStationManager : MonoBehaviour
             // We infact have found a TrainStation
             if (gameObject.GetComponents<TrainStation>().Length != 0)
             {
-                StationData.Add(new string[] { gameObject.name, gameObject.transform.position.x.ToString(nfi), gameObject.transform.position.y.ToString(nfi) });
+                string unlockedvalue = "1";
+
+                StationData.Add(new string[] {gameObject.name, gameObject.transform.position.x.ToString(nfi), gameObject.transform.position.y.ToString(nfi), unlockedvalue});
+            }
+        }
+
+        foreach (Transform child in UnlockableStationParent.transform)
+        {
+            foreach (Transform grandchild in child)
+            {
+                string unlockedvalue = "0";
+
+                StationData.Add(new string[] {grandchild.name, grandchild.transform.position.x.ToString(nfi), grandchild.transform.position.y.ToString(nfi), unlockedvalue});
             }
         }
     }
@@ -145,7 +174,7 @@ public class TrainStationManager : MonoBehaviour
         newStationPosition.z = 0;
         var newStation = Instantiate(trainStationPrefab, newStationPosition, Quaternion.identity);
         newStation.name = newStationName;
-        newStation.transform.localScale = new Vector3(5, 5, 1);
+        newStation.transform.localScale = new Vector3(20, 20, 1);
         //newStation.transform.SetParent(transform, false);
         newStation.AddComponent<ToolTipAccessor>().UpdateToolTipString(newStationName);
 
