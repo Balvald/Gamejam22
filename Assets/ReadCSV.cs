@@ -23,7 +23,7 @@ public class ReadCSV : MonoBehaviour
                 break;
             }
             string[] values = data.Split(';');
-            Debug.Log(values[4] + ";...;" + values[27] + ";...;" + values[28]);
+            //Debug.Log(values[4] + ";...;" + values[27] + ";...;" + values[28]);
             // Name, Geo X pos, Geo Y pos. The Geographical positions of the gn250 are already for a cartesian coordinate system.
             StationData.Add(new string[]{ values[4], values[27], values[28] });
         }
@@ -46,7 +46,7 @@ public class ReadCSV : MonoBehaviour
                 break;
             }
             string[] values = data.Split(';');
-            Debug.Log(values[0] + " " + values[1] + " " + values[2] + " " + values[3]);
+            //Debug.Log(values[0] + " " + values[1] + " " + values[2] + " " + values[3]);
             StationData.Add(new string[] { values[0], values[1], values[2] , values[3]}); // Name, Geo X pos, Geo Y pos
         }
 

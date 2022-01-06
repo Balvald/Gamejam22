@@ -46,11 +46,12 @@ public class TrainStationManager : MonoBehaviour
         nfi.NumberDecimalSeparator = ".";
         //GetGeoStationData();
         GetGameStationData();
+        CreateStations(StationData, false);
     }
 
     void Start()
     {
-        CreateStations(StationData, false);
+        //CreateStations(StationData, false);
     }
 
     // Update is called once per frame
@@ -83,7 +84,7 @@ public class TrainStationManager : MonoBehaviour
         }
         foreach (string[] data in trainStationData)
         {
-            Debug.Log("Creating: " + data[0] + " at: " + data[1] + " ; " + data[2]);
+            //Debug.Log("Creating: " + data[0] + " at: " + data[1] + " ; " + data[2]);
             Vector3 currentTrainStationPosition = new Vector3(float.Parse(data[1], cul) * factor, float.Parse(data[2], cul) * factor, 0) + offset;
             GameObject currentTrainStation = Instantiate(trainStationPrefab, currentTrainStationPosition, Quaternion.identity);
             currentTrainStation.name = data[0];
@@ -126,7 +127,7 @@ public class TrainStationManager : MonoBehaviour
         foreach (object station in potentialStations)
         {
             GameObject gameObject = (GameObject)station;
-            Debug.Log(gameObject.name);
+            //Debug.Log(gameObject.name);
 
             // We infact have found a TrainStation
             if (gameObject.GetComponents<TrainStation>().Length != 0)
@@ -163,9 +164,9 @@ public class TrainStationManager : MonoBehaviour
 
         // Need to read from a Textfield and Instantiate a new Station here
 
-        Debug.Log("Creating Station with Name: " + newStationName);
+        //Debug.Log("Creating Station with Name: " + newStationName);
 
-        Debug.Log("MousePos: " + Mouse.current.position.ReadValue());
+        //Debug.Log("MousePos: " + Mouse.current.position.ReadValue());
 
         var pos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
