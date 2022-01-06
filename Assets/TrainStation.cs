@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -15,10 +16,14 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
     [SerializeField]
     private int mMaxConnectedLines = 3;
-    // Start is called before the first frame update
+
+    private bool HasSpaceForLines => mConnenctedLines.Count <= mMaxConnectedLines;
+
+    private LineConstructor mLineConstructor;
     void Start()
     {
         Physics.queriesHitTriggers = true;
+        mLineConstructor = FindObjectOfType<LineConstructor>();
     }
 
     // Update is called once per frame
@@ -31,8 +36,7 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            var constructor = FindObjectOfType<LineConstructor>();
-            constructor.HandleStationClick(this);
+            mLineConstructor.HandleStationClick(this);
             return;
         }
     }
@@ -90,5 +94,33 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         }
 
         mConnenctedLines[trainLine.ID] = trainLine;
+    }
+
+    public void CallConstructor()
+    {
+        mLineConstructor.HandleStationClick(this);
+    }
+
+    public List<Button> GetButtons()
+    {
+        var btns = new List<Button>();
+
+        if (HasSpaceForLines)
+        {
+            // create newLine Button
+
+            // get instance
+            var o = Instantiate(mLineButtonPrefab);
+            var btn = o.GetComponent<Button>();
+            var tooltip = o.GetComponent<ToolTipAccessor>();
+
+            tooltip.UpdateToolTipString("start new Line here");
+
+            btn.onClick.AddListener(CallConstructor);
+
+            btns.Add(btn);
+        }
+
+        return btns;
     }
 }

@@ -14,6 +14,9 @@ public class TrainLine : MonoBehaviour
 
     private int mIdentifier;
 
+    public TrainStation LastStation => mStations?.Last();
+    public TrainStation FirstStation => mStations?.First();
+
     public int ID => mIdentifier;
 
     // Start is called before the first frame update
