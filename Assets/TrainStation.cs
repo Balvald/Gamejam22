@@ -13,6 +13,8 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
     private Dictionary<int, TrainLine> mConnenctedLines = new Dictionary<int, TrainLine>();
 
+    public int stationDataIndex;
+
     [SerializeField]
     private GameObject mLineButtonPrefab;
 
@@ -197,6 +199,11 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         o.transform.localPosition = Quaternion.AngleAxis(mResourceGenerators.Keys.Count * 120, Vector3.forward) * (Vector3.up * 3);
 
         mResourceGenerators[type] = gen;
+    }
+
+    public int GetStationDataIndex()
+    {
+        return stationDataIndex;
     }
 }
 

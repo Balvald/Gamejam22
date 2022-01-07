@@ -13,7 +13,6 @@ public class TrainStationManager : MonoBehaviour
     public GameObject PayWallPrefab;
     public GameObject CSVHandler;
     public GameObject UnlockableStationParent;
-    public GameObject inputField;
     public string datapath;
     public List<string[]> StationData;
     private TrainStation[] trainStations;
@@ -45,8 +44,8 @@ public class TrainStationManager : MonoBehaviour
         // Set Number Format Info accordingly.
         nfi.NumberDecimalSeparator = ".";
         //GetGeoStationData();
-        GetGameStationData();
-        CreateStations(StationData, false);
+        //GetGameStationData();
+        //CreateStations(StationData, false);
     }
 
     void Start()
@@ -74,7 +73,7 @@ public class TrainStationManager : MonoBehaviour
 
     public void CreateStations(List<string[]> trainStationData, bool geo)
     {
-        Debug.Log("Creating Stations");
+        //Debug.Log("Creating Stations");
         Vector3 offset = new Vector3(0, 0, 0);
         float factor = 1.0f;
         if (geo)
@@ -104,9 +103,49 @@ public class TrainStationManager : MonoBehaviour
         }
     }
 
-    void MakeUnlockableStation()
+    public void CreateStation(StationData stationData)
     {
-        // Create the unlockable station with the paywall.
+        //Debug.Log("Creating: " + data[0] + " at: " + data[1] + " ; " + data[2]);
+        Vector3 currentTrainStationPosition = new Vector3(stationData.posX, stationData.posY, 0);
+        GameObject currentTrainStation = Instantiate(trainStationPrefab, currentTrainStationPosition, Quaternion.identity);
+        currentTrainStation.name = stationData.stationName;
+        currentTrainStation.transform.localScale = new Vector3(5, 5, 1);
+        //currentTrainStation.transform.SetParent(transform, false);
+        currentTrainStation.AddComponent<ToolTipAccessor>().UpdateToolTipString(currentTrainStation.name);
+
+        if (!stationData.unlocked) // Station is not unlocked yet: Need to create Paywall
+        {
+            var newUnlockableStationPaywall = Instantiate(PayWallPrefab, currentTrainStationPosition, Quaternion.identity);
+            newUnlockableStationPaywall.transform.SetParent(UnlockableStationParent.transform, true);
+            newUnlockableStationPaywall.transform.localScale = new Vector3(1, 1, 1);
+            newUnlockableStationPaywall.GetComponent<PayWall>().SetObjectToUnlock(currentTrainStation);
+            newUnlockableStationPaywall.AddComponent<ToolTipAccessor>().UpdateToolTipString(currentTrainStation.name + " (Not Owned)");
+            currentTrainStation.transform.SetParent(newUnlockableStationPaywall.transform, true);
+        }
+
+        TrainStation trainStation = currentTrainStation.GetComponent<TrainStation>();
+
+        // TODO: Write the saved efficiency values into the file.
+
+        // Put efficiency values into station where it is appropiate.
+
+        // Need to create Resource Generators
+
+        if (stationData.ironbuilt)
+        {
+            trainStation.AddProducer(ResourceType.Iron);
+        }
+
+        if (stationData.coalbuilt)
+        {
+            trainStation.AddProducer(ResourceType.Coal);
+        }
+
+        if (stationData.moneybuilt)
+        {
+            trainStation.AddProducer(ResourceType.Money);
+        }
+
     }
 
     public void SetStationInactive(GameObject trainStation)
@@ -148,36 +187,12 @@ public class TrainStationManager : MonoBehaviour
             }
         }
     }
-
+    /*
     public void SaveStationData()
     {
         UpdateStationData();
         WriteCSV script = CSVHandler.GetComponent<WriteCSV>();
         script.WriteCSVofCurrentlyDisplayedStations(StationData);
     }
-
-    public void OnHomeKey()
-    {
-        string newStationName = inputField.GetComponent<TMP_InputField>().text;
-
-        // When I press T I want that at the mouse cursor position to spawn a Trainstation prefab that is going to be named the name that I type into a textfield.
-
-        // Need to read from a Textfield and Instantiate a new Station here
-
-        //Debug.Log("Creating Station with Name: " + newStationName);
-
-        //Debug.Log("MousePos: " + Mouse.current.position.ReadValue());
-
-        var pos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-
-        Vector3 newStationPosition = new Vector3(pos.x, pos.y, 0);
-
-        newStationPosition.z = 0;
-        var newStation = Instantiate(trainStationPrefab, newStationPosition, Quaternion.identity);
-        newStation.name = newStationName;
-        newStation.transform.localScale = new Vector3(20, 20, 1);
-        //newStation.transform.SetParent(transform, false);
-        newStation.AddComponent<ToolTipAccessor>().UpdateToolTipString(newStationName);
-
-    }
+    */
 }

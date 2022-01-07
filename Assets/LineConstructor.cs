@@ -66,4 +66,14 @@ public class LineConstructor : MonoBehaviour
 
         mSelectedStation = null;
     }
+
+    public void ResetIDCounter()
+    {
+        mIdCounter = 0;
+    }
+
+    public int GetCurrentIDCounter()
+    {
+        return mIdCounter;
+    }
 }

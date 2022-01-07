@@ -29,8 +29,8 @@ public class TrainLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // pass
     }
-
 
     public void Initialize(TrainStation stat1, TrainStation stat2, int id)
     {
@@ -73,6 +73,10 @@ public class TrainLine : MonoBehaviour
         mRoadCreator.UpdateRoad();
     }
 
+    public List<TrainStation> GetMStations()
+    {
+        return mStations;
+    }
 
     public Path GetPath()
     {

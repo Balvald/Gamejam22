@@ -11,6 +11,7 @@ public class InGameMenu : MonoBehaviour
     public GameObject PauseMenuUI;
     public GameObject SaveMenuUI;
     public GameObject LoadMenuUI;
+    public GameObject SirHandel;
 
     // Start is called before the first frame update
     void Start()
@@ -67,15 +68,61 @@ public class InGameMenu : MonoBehaviour
         PauseMenuUI.SetActive(true);
     }
 
-    public void SaveButton()
+    // Looks like crap but works. 4 Slots are more than enought for this simple game.
+    public void SaveButton1()
     {
-        //Save current state of game with name in associated input field
+        string slot = "slot1.json";
+        SirHandel.GetComponent<GameDataHandler>().switchSaveSlot(slot);
+        SirHandel.GetComponent<GameDataHandler>().writeFile();
     }
 
-    public void LoadButton()
+    public void SaveButton2()
     {
-        //Attempt to load gamefile with name in associated input field
+        string slot = "slot2.json";
+        SirHandel.GetComponent<GameDataHandler>().switchSaveSlot(slot);
+        SirHandel.GetComponent<GameDataHandler>().writeFile();
+    }
 
+    public void SaveButton3()
+    {
+        string slot = "slot3.json";
+        SirHandel.GetComponent<GameDataHandler>().switchSaveSlot(slot);
+        SirHandel.GetComponent<GameDataHandler>().writeFile();
+    }
+
+    public void SaveButton4()
+    {
+        string slot = "slot4.json";
+        SirHandel.GetComponent<GameDataHandler>().switchSaveSlot(slot);
+        SirHandel.GetComponent<GameDataHandler>().writeFile();
+    }
+
+    public void LoadButton1()
+    {
+        string slot = "slot1.json";
+        SirHandel.GetComponent<GameDataHandler>().switchSaveSlot(slot);
+        SirHandel.GetComponent<GameDataHandler>().readFile();
+    }
+
+    public void LoadButton2()
+    {
+        string slot = "slot2.json";
+        SirHandel.GetComponent<GameDataHandler>().switchSaveSlot(slot);
+        SirHandel.GetComponent<GameDataHandler>().readFile();
+    }
+
+    public void LoadButton3()
+    {
+        string slot = "slot3.json";
+        SirHandel.GetComponent<GameDataHandler>().switchSaveSlot(slot);
+        SirHandel.GetComponent<GameDataHandler>().readFile();
+    }
+
+    public void LoadButton4()
+    {
+        string slot = "slot4.json";
+        SirHandel.GetComponent<GameDataHandler>().switchSaveSlot(slot);
+        SirHandel.GetComponent<GameDataHandler>().readFile();
     }
 
     // Update is called once per frame
