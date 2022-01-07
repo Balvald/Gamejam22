@@ -136,12 +136,29 @@ public class Path
         }
     }
 
+    public void AddSegmentTrainFront(Vector2 station)
+    {
+        var p = GetNewPoints(station, points.First());
+
+        points.InsertRange(0, new []{station, p.Item1, p.Item2});
+
+    }
+
     public void AddSegmentTrain(Vector2 newStation)
     {
         AddSegmentTrain(points.Last(), newStation);
     }
 
     public void AddSegmentTrain(Vector2 oldStation, Vector2 newStation)
+    {
+        var p = GetNewPoints(oldStation, newStation);
+
+        points.Add(p.Item1);
+        points.Add(p.Item2);
+        points.Add(newStation);
+    }
+
+    public (Vector2, Vector2) GetNewPoints(Vector2 oldStation, Vector2 newStation)
     {
         var distances = newStation - oldStation;
 
@@ -166,9 +183,7 @@ public class Path
             p2 = newStation - distances.x * Vector2.right;
         }
 
-        points.Add(p1);
-        points.Add(p2);
-        points.Add(newStation);
+        return (p1, p2);
     }
 
     public void SplitSegment(Vector2 anchorPos, int segmentIndex)

@@ -31,9 +31,6 @@ public class TrainLine : MonoBehaviour
     {
     }
 
-    private void MoveTrain(Train train)
-    {
-    }
 
     public void Initialize(TrainStation stat1, TrainStation stat2, int id)
     {
@@ -57,16 +54,21 @@ public class TrainLine : MonoBehaviour
         mRoadCreator.UpdateRoad();
     }
 
-    public void AddStation(TrainStation station)
+    public void AddStation(TrainStation newStation, TrainStation oldStation)
     {
-        var last = mStations.Last();
-        mStations.Add(station);
+        var isInFront = oldStation == mStations.First();
 
-        last.AddAdjacent(station);
-        station.AddAdjacent(last);
+        if (isInFront)
+        {
+            mStations.Insert(0, newStation);
+        }
+        mStations.Add(newStation);
 
-        station.AddLine(this);
-        mPathCreator.AddPosition(station.transform.position);
+        oldStation.AddAdjacent(newStation);
+        newStation.AddAdjacent(oldStation);
+
+        newStation.AddLine(this);
+        mPathCreator.AddPosition(newStation.transform.position, isInFront);
 
         mRoadCreator.UpdateRoad();
     }
@@ -75,5 +77,10 @@ public class TrainLine : MonoBehaviour
     public Path GetPath()
     {
         return mPathCreator.path;
+    }
+
+    public bool IsLastStation(TrainStation station)
+    {
+        return station == FirstStation || station == LastStation;
     }
 }

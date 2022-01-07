@@ -40,9 +40,14 @@ public class PathCreator : MonoBehaviour
         path = new Path(left, right);
     }
 
-    public void AddPosition(Vector3 position)
+    public void AddPosition(Vector3 position, bool atFront)
     {
         var pos = new Vector2(position.x,position.y);
+        if (atFront)
+        {
+            path.AddSegmentTrainFront(pos);
+            return;
+        }
         path.AddSegmentTrain(pos);
     }
 }

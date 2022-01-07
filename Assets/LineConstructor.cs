@@ -13,6 +13,11 @@ public class LineConstructor : MonoBehaviour
 
     private int mIdCounter;
 
+    [SerializeField]
+    private int mMaxDistance = 200;
+
+    public bool HasSelected => mSelectedStation != null;
+
     // Update is called once per frame
     void Update()
     {
@@ -24,7 +29,7 @@ public class LineConstructor : MonoBehaviour
         // TODO: render preview
     }
 
-    public void HandleStationClick(TrainStation station)
+    public void HandleStationClick(TrainStation station, int lineId = -1)
     {
         if (mSelectedStation == null)
         {
@@ -32,17 +37,19 @@ public class LineConstructor : MonoBehaviour
             return;
         }
 
-        if (station == mSelectedStation || station.GetComponent<TrainStation>().HasAdjacent(mSelectedStation))
+        if (station == mSelectedStation || 
+            station.GetComponent<TrainStation>().HasAdjacent(mSelectedStation) ||
+            Vector3.Distance(mSelectedStation.transform.position, station.transform.position) > mMaxDistance)
         {
             mSelectedStation = null;
             return;
         }
 
         TrainLine line;
-        if (mSelectedStation.TryGetTrainLine() != null)
+        if (mSelectedStation.TryGetTrainLine(lineId) != null)
         {
-            line = mSelectedStation.TryGetTrainLine();
-            line.AddStation(station);
+            line = mSelectedStation.TryGetTrainLine(lineId);
+            line.AddStation(station, mSelectedStation);
             return;
         }
 

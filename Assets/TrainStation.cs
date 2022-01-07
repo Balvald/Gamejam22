@@ -20,6 +20,8 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     private bool HasSpaceForLines => mConnenctedLines.Count <= mMaxConnectedLines;
 
     private LineConstructor mLineConstructor;
+
+
     void Start()
     {
         Physics.queriesHitTriggers = true;
@@ -34,7 +36,7 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
+        if (eventData.button == PointerEventData.InputButton.Left && mLineConstructor.HasSelected)
         {
             mLineConstructor.HandleStationClick(this);
             return;
@@ -96,9 +98,9 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         mConnenctedLines[trainLine.ID] = trainLine;
     }
 
-    public void CallConstructor()
+    public void CallConstructor(int id  = -1)
     {
-        mLineConstructor.HandleStationClick(this);
+        mLineConstructor.HandleStationClick(this, id);
     }
 
     public List<Button> GetButtons()
@@ -116,9 +118,25 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
             tooltip.UpdateToolTipString("start new Line here");
 
-            btn.onClick.AddListener(CallConstructor);
+            btn.onClick.AddListener(delegate{CallConstructor();});
 
             btns.Add(btn);
+        }
+
+        foreach (var line in mConnenctedLines)
+        {
+            if (line.Value.IsLastStation(this))
+            {
+                var o = Instantiate(mLineButtonPrefab);
+                var btn = o.GetComponent<Button>();
+                var tooltip = o.GetComponent<ToolTipAccessor>();
+
+                tooltip.UpdateToolTipString("continue Line " + line.Key);
+
+                btn.onClick.AddListener(delegate{CallConstructor(line.Key);});
+
+                btns.Add(btn);
+            }
         }
 
         return btns;

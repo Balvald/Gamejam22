@@ -21,6 +21,8 @@ public class HoverMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     private Coroutine mAnimationCoroutine;
     // Start is called before the first frame update
+
+
     void Start()
     {
         mCanvas = GetComponentInChildren<Canvas>();
@@ -32,16 +34,12 @@ public class HoverMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerEnter(PointerEventData eventData)
     {
         UpdateButtons();
+        mCanvas.transform.position = transform.position;
         mCanvas.gameObject.SetActive(true);
     }
 
     private void UpdateButtons()
     {
-        foreach (var btn in mButtons)
-        {
-            Destroy(btn.gameObject);
-        }
-
         mButtons = mTrainStation.GetButtons();
         foreach (var btn in mButtons)
         {
@@ -57,26 +55,40 @@ public class HoverMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         mCanvas.gameObject.SetActive(false);
         StopCoroutine(mAnimationCoroutine);
         ToolTip.HideToolTip_Static(); // just in case
+        KillButtons();
+    }
+
+    private void KillButtons()
+    {
+        foreach (var btn in mButtons)
+        {
+            Destroy(btn.gameObject);
+        }
     }
 
     private IEnumerator AnimateButtons()
     {
         var numBtn = mButtons.Count;
+        if (numBtn <= 0)
+        {
+            yield break;
+        }
         var angle = 360 / numBtn;
 
-        var t = 0f;
+        var t = 0.3f;
 
         while (t < 1)
         {
+            t += mAnimationSpeed * Time.deltaTime;
             for (int i = 0; i < numBtn; i++)
             {
                 var btn = mButtons[i];
                 var desiredPosition = transform.position + Quaternion.AngleAxis(-angle * i, Vector3.forward) * Vector3.up * mDistance;
-
+                //var desiredPosition = Quaternion.AngleAxis(-angle * i, Vector3.forward) * Vector3.up * mDistance;
+                t = Mathf.Min(1, t);
                 btn.transform.position = Vector3.Lerp(transform.position, desiredPosition, t);
+                //btn.transform.position = Vector3.Lerp(Vector3.zero, desiredPosition, t);
             }
-
-            t += mAnimationSpeed * Time.deltaTime;
             yield return null;
         }
     }
