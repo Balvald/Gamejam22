@@ -96,7 +96,7 @@ public class TrainStationManager : MonoBehaviour
             {
                 var newUnlockableStationPaywall = Instantiate(PayWallPrefab, currentTrainStationPosition, Quaternion.identity);
                 newUnlockableStationPaywall.transform.SetParent(UnlockableStationParent.transform, true);
-                newUnlockableStationPaywall.transform.localScale = new Vector3(5, 5, 1);
+                newUnlockableStationPaywall.transform.localScale = new Vector3(1, 1, 1);
                 newUnlockableStationPaywall.GetComponent<PayWall>().SetObjectToUnlock(currentTrainStation);
                 newUnlockableStationPaywall.AddComponent<ToolTipAccessor>().UpdateToolTipString(currentTrainStation.name + " (Not Owned)");
                 currentTrainStation.transform.SetParent(newUnlockableStationPaywall.transform, true);
