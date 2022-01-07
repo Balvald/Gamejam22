@@ -27,6 +27,11 @@ public class ResourceManager : MonoBehaviour
         mResources[type] += amount;
     }
 
+    public void SetResource(ResourceType type, int amount)
+    {
+        mResources[type] = amount;
+    }
+
     void RemoveResource(ResourceType type, int amount)
     {
         mResources[type] = Mathf.Max(mResources[type] - amount, 0);

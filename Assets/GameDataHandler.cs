@@ -198,8 +198,18 @@ public class GameDataHandler : MonoBehaviour
         // Rebuild TrainLines and Trains
         lineConstructor.GetComponent<LineConstructor>().ResetIDCounter();
         InstantiateTrainLinesFromData();
-
         // Give Player his resources specified in Save File
+        GiveResourcesBackToPlayer();
+
+    }
+
+    public void GiveResourcesBackToPlayer()
+    {
+        ResourceManager resMan = resourceManager.GetComponent<ResourceManager>();
+
+        resMan.SetResource(ResourceType.Iron, gameData.playerResourceData.iron);
+        resMan.SetResource(ResourceType.Coal, gameData.playerResourceData.coal);
+        resMan.SetResource(ResourceType.Money, gameData.playerResourceData.money);
     }
 
     public void InstantiateTrainLinesFromData()
@@ -232,105 +242,8 @@ public class GameDataHandler : MonoBehaviour
                 lineConstructor.GetComponent<LineConstructor>().HandleStationClick(station1.GetComponent<TrainStation>(), id);
                 lineConstructor.GetComponent<LineConstructor>().HandleStationClick(station2.GetComponent<TrainStation>(), id);
             }
-
             id++;
         }
-
-        /*
-        // Stations must be existing at this point!
-
-        List<StationData> allStations = gameData.allStationData;
-
-        // I hate this following part with every cell of my body.
-
-        foreach (TrainLineData trainLineData in gameData.allTrainLineData)
-        {
-
-            // In here we want to instantiate a trainline from its trianlineData.
-
-            int pass = 0;
-
-            TrainLine line = Instantiate(mLinePrefab).GetComponent<TrainLine>();
-
-            int firstIndex = 0;
-
-            GameObject first = new GameObject(); // once found it's always the first
-            GameObject current = new GameObject(); // current station to be added
-
-            // Trainline data by itself is rather useless the stationIndices say which stations are connected.
-            foreach (int index in trainLineData.stationIndices)
-            {
-                if (pass == 0)
-                {
-                    line.transform.SetParent(transform, false);
-                    firstIndex = index;
-                    pass++;
-
-                    object[] potentialStations = GameObject.FindObjectsOfType(typeof(GameObject));
-                    foreach (object station in potentialStations)
-                    {
-                        GameObject gameObject = (GameObject)station;
-                        // We infact have found a TrainStation
-                        if (gameObject.GetComponents<TrainStation>().Length != 0)
-                        {
-                            TrainStation iterated = gameObject.GetComponent<TrainStation>();
-                            if (iterated.GetStationDataIndex() == firstIndex)
-                            {
-                                first = gameObject;
-                                break;
-                            }
-                        }
-                    }
-
-                    continue;
-                }
-                if (pass == 1)
-                {
-                    // find the first two stations with the right indices...
-                    pass++;
-                    object[] potentialStations = GameObject.FindObjectsOfType(typeof(GameObject));
-                    foreach (object station in potentialStations)
-                    {
-                        GameObject gameObject = (GameObject)station;
-                        // We infact have found a TrainStation
-                        if (gameObject.GetComponents<TrainStation>().Length != 0)
-                        {
-                            TrainStation iterated = gameObject.GetComponent<TrainStation>();
-                            if (iterated.GetStationDataIndex() == index)
-                            {
-
-                                current = gameObject;
-                                line.Initialize((TrainStation)first, (TrainStation)current, lineConstructor.GetComponent<LineConstructor>().GetCurrentIDCounter());
-                                break;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-
-                    // find the station with the right index...
-
-                    TrainStation[] potentialStations = (TrainStation) GameObject.FindObjectsOfType(typeof(TrainStation));
-                    foreach (TrainStation station in potentialStations)
-                    {
-                        if (station.GetStationDataIndex() == index)
-                        {
-                            current = gameObject;
-                            line.AddStation(first.GetComponent<TrainStation>(), station);
-                            break;
-                        }
- 
-                    }
-                }
-            }
-
-            // Instantiate Line after Line was rebuilt.
-            Train train = Instantiate(mTrainPrefab).GetComponent<Train>();
-            train.transform.SetParent(line.transform, false);
-            train.SetLine(line);
-        }
-        */
     }
 
     public void RebuildStationsFromData()
