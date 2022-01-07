@@ -1,31 +1,31 @@
-Wurzen;3651.519;4256.02;1
-Weißig (bei Großenhain);4131.486;4197.168;1
-Riesa;4036.15;4216;1
-Radebeul-Zitzschewig;4269.408;4013.555;1
-Radebeul-Weintraube;4307.17;4002.016;1
-Radebeul Ost;4324.544;3997.828;1
-Priestewitz;4194.896;4159.742;1
-Oschatz;3909.962;4211.133;1
-Niederau;4235.871;4078.828;1
-Machern (Sachs);3573.051;4244.059;1
-Leipzig-Sellerhausen;3434.818;4223.363;1
-Leipzig-Paunsdorf;3446.253;4223.582;1
-Leipzig-Engelsdorf;3461.764;4224.063;1
-Leipzig Hbf;3403.962;4222.52;1
-Kühren;3718.573;4242.547;1
-Glaubitz (bei Riesa);4091.451;4227.313;1
-Gerichshain;3547.105;4239.488;1
-Dresden-Trachau;4344.12;3989.039;1
-Dresden-Pieschen;4357.953;3981.465;1
-Dresden-Neustadt Gbf;4360.714;3976.832;1
-Dresden Leipziger Bahnhof;4369.601;3964.59;1
-Dornreichenbach;3749.36;4246.617;1
-Dahlen (Sachs);3823.904;4250.082;1
-Coswig (bei Dresden);4253.352;4020.141;1
-Borsdorf (Sachs);3515.034;4228.402;1
-Bornitz (bei Oschatz);3959.002;4203.652;1
-Bennewitz;3629.947;4245.148;1
 Altenbach;3612.771;4244.664;1
+Bennewitz;3629.947;4245.148;1
+Bornitz (bei Oschatz);3959.002;4203.652;1
+Borsdorf (Sachs);3515.034;4228.402;1
+Coswig (bei Dresden);4253.352;4020.141;1
+Dahlen (Sachs);3823.904;4250.082;1
+Dornreichenbach;3749.36;4246.617;1
+Dresden Leipziger Bahnhof;4369.601;3964.59;1
+Dresden-Neustadt Gbf;4360.714;3976.832;1
+Dresden-Pieschen;4354.5;3982.7;1
+Dresden-Trachau;4344.12;3989.039;1
+Gerichshain;3547.105;4239.488;1
+Glaubitz (bei Riesa);4091.451;4227.313;1
+Kühren;3718.573;4242.547;1
+Leipzig Hbf;3403.962;4222.52;1
+Leipzig-Engelsdorf;3461.764;4224.063;1
+Leipzig-Paunsdorf;3446.253;4223.582;1
+Leipzig-Sellerhausen;3434.818;4223.363;1
+Machern (Sachs);3573.051;4244.059;1
+Niederau;4235.871;4078.828;1
+Oschatz;3909.962;4211.133;1
+Priestewitz;4194.896;4159.742;1
+Radebeul Ost;4324.544;3997.828;1
+Radebeul-Weintraube;4307.17;4002.016;1
+Radebeul-Zitzschewig;4269.408;4013.555;1
+Riesa;4036.15;4216;1
+Weißig (bei Großenhain);4131.486;4197.168;1
+Wurzen;3651.519;4256.02;1
 Aachen Hbf;-1003.593;3565.297;0
 Aachen Nord;-992.7976;3586.117;0
 Aachen Schanz;-1014.465;3570.523;0
@@ -191,7 +191,6 @@ Altmittweida;3828.818;3824.367;0
 Altmorschen;1478.361;3859.992;0
 Altmügeln;3867.61;4126.008;0
 Altomünster;2718.599;901.6953;0
-Altoschatz-Rosenthal;3907.365;4184.395;0
 Altötting;3778.172;760.2578;0
 Altranft;4476.4;5867.023;0
 Altruppin;3643.786;6013.813;0
@@ -206,7 +205,6 @@ Alzenau Burg;1102.286;2770.578;0
 Alzenau Nord;1085.07;2771.969;0
 Alzey;407.0552;2398.414;0
 Alzey Süd;415.2339;2384.152;0
-Alzey West;412.0928;2383.148;0
 Am Lohbusch;610.728;4262.934;0
 Amberg;3124.306;2098.309;0
 Amelinghausen-Sottorf;1861.569;6161.594;0
@@ -358,13 +356,11 @@ Bramstedt Kurhaus;1633.919;7017.148;0
 Breisig;-154.2251;3246.223;0
 Camberg;518.1914;3005.43;0
 Doberan;2948.9;7271.137;0
-Doberan Goethestraße;2945.726;7280.445;0
 Doberan Stadtmitte;2946.027;7278.125;0
 Driburg (Westf);1070.527;4595.824;0
 Düben (Mulde);3541.49;4499.66;0
 Dürkheim;448.9761;2075.879;0
 Dürkheim Ost;457.4771;2080.332;0
-Dürkheim RHB;448.1191;2079.582;0
 Dürkheim-Trift;465.2959;2083.438;0
 Dürrenberg;3189.943;4168.453;0
 Eilsen;1122.646;5163.25;0
@@ -839,7 +835,6 @@ Bieren-Rödinghausen;719.3066;5161.777;0
 Bierfeld;-429.3967;2260.34;0
 Bieringen (bei Horb);946.0562;948.7734;0
 Biersdorf (Westerw) Ort;306.8335;3508.91;0
-Biersdorf Bf (Westerw);303.3403;3510.859;0
 Biesdorfer Kreuz Nord;4126.248;5573.363;0
 Biesenrode;2699.182;4483.504;0
 Biesenthal;4203.83;5841.719;0
@@ -937,7 +932,6 @@ Blumenau;4080.464;3506.57;0
 Blumenberg;2733.444;4961.516;0
 Blumenhagen;4276.894;6706.914;0
 Blumenkamp;-600.3667;4583.938;0
-Blumenstraße;786.6675;2167.035;0
 Blumenthal (Eifel);-753.417;3252.965;0
 Blumenthal (Mark);3281.487;6147.449;0
 Bobenheim;579.3828;2216.023;0
@@ -1276,7 +1270,6 @@ Burgkunstadt;2651.475;2849.332;0
 Burglauer;1893.242;2981.449;0
 Burglengenfeld;3259.681;1839.715;0
 Burgsinn;1517.612;2841.027;0
-Burgsinn Bbf;1521.696;2812.293;0
 Burgstädt;3728.619;3759.75;0
 Burgstall (Murr);1317.465;1481.07;0
 Burgthann;2726.608;1967.152;0
@@ -1318,7 +1311,6 @@ Cammin (Meckl);3904.186;6583.125;0
 Capelle (Westf);90.14868;4612.965;0
 Caputh Schwielowsee;3760.615;5349.055;0
 Caputh-Geltow;3762.942;5360.672;0
-Carolahöhe;3863.539;3936.75;0
 Carolinenhof;234.1069;6205.91;0
 Casekow;4526.968;6374.559;0
 Castrop-Rauxel Hbf;-127.9204;4435.078;0
@@ -1331,18 +1323,14 @@ Cham (Oberpf);3709.537;1872.449;0
 Chamerau;3776.796;1846.578;0
 Charlottenhof (Oberlausitz);5216.12;4190.828;0
 Chausseehaus;457.8237;2782.855;0
-Chemnitz Friedrichstraße;3813.174;3605.02;0
 Chemnitz Hbf;3816.548;3680.199;0
 Chemnitz Kinderwaldstätte;3829.669;3729.855;0
 Chemnitz Mitte;3802.222;3663.59;0
-Chemnitz Riemenschneiderstraße;3815.624;3619.688;0
 Chemnitz Stadtpark;3803.148;3635.828;0
 Chemnitz Süd;3813.501;3659.914;0
-Chemnitz Zwönitzbrücke;3812.63;3626.07;0
 Chemnitz-Altchemnitz;3814.456;3624.563;0
 Chemnitz-Borna ;3789.333;3701;0
 Chemnitz-Erfenschlag;3832.854;3622.625;0
-Chemnitz-Harthau;3814.545;3609.059;0
 Chemnitz-Hilbersdorf;3831.688;3705.238;0
 Chemnitz-Reichenhain;3822.563;3630.258;0
 Chemnitz-Schönau;3779.662;3653.613;0
@@ -1373,7 +1361,6 @@ Cossen;3701.925;3818.094;0
 Coswig (Anh) Gbf;3414.283;4828.789;0
 Coswig (Anh);3428.333;4828.313;0
 Cottbus;4721.709;4753.984;0
-Cottbus Südwest;4706.406;4744.238;0
 Cottbus-Merzdorf Süd-Nord;4750.611;4774.277;0
 Cottbus-Sandow;4742.589;4759.703;0
 Cottbus-Willmersdorf Nord;4760.228;4829.223;0
@@ -1603,13 +1590,11 @@ Dorsfeld;-616.9922;3682.605;0
 Dorsten;-354.4084;4533.309;0
 Dörstewitz;3066.331;4257.195;0
 Dortelweil;872.1289;2904.855;0
-Dortmund Bbf;-0.8117676;4374.625;0
 Dortmund Germania;-86.35669;4351.895;0
 Dortmund Hbf;-21.49194;4371.27;0
 Dortmund Möllerbrücke;-24.96875;4359.629;0
 Dortmund Stadthaus;-13.43237;4360.293;0
 Dortmund Süd;-4.491943;4360.672;0
-Dortmund Tierpark;-18.86499;4326.695;0
 Dortmund West;-34.0188;4362.527;0
 Dortmund-Aplerbeck;42.42798;4339.527;0
 Dortmund-Aplerbeck Süd;41.20044;4333.938;0
@@ -1630,7 +1615,6 @@ Dortmund-Kirchderne;15.95972;4402.891;0
 Dortmund-Kirchhörde;-22.16162;4311.613;0
 Dortmund-Kley;-82.95239;4340.992;0
 Dortmund-Körne;18.03857;4365.063;0
-Dortmund-Körne West;10.00122;4361.641;0
 Dortmund-Kruckel;-51.5354;4305.578;0
 Dortmund-Kurl;69.13745;4413.133;0
 Dortmund-Löttringhausen;-29.59155;4297.988;0
@@ -1650,7 +1634,6 @@ Dortmund-Stockheide;10.52393;4394.547;0
 Dortmund-Westerfilde;-74.39502;4406.598;0
 Dortmund-Westerholz;-29.6001;4390.059;0
 Dortmund-Wickede;96.14795;4387.617;0
-Dortmund-Wickede West;82.54126;4381.957;0
 Dortmund-Wischlingen;-52.44385;4374.453;0
 Dorum;768.8306;6775.684;0
 Dörverden;1215.089;5839.418;0
@@ -1879,7 +1862,6 @@ Einbeck-Salzderhelden;1686.71;4673.324;0
 Einfeld;1701.875;7270.445;0
 Einöd (Saar);-174.9519;1872.219;0
 Einsiedel;3849.356;3606.949;0
-Einsiedel Gymnasium;3845.307;3618.543;0
 Einsiedlerhof;80.02612;2048.789;0
 Einsingen;1728.77;841.9141;0
 Eischleben;2452.608;3655.422;0
@@ -2061,7 +2043,6 @@ Eschwege West;1744.701;4001.922;0
 Eschwege-Niederhone;1755.239;4006.855;0
 Eschweiler Hbf;-888.0652;3613.113;0
 Eschweiler Talbahnhof;-877.9041;3613.664;0
-Eschweiler West;-886.7556;3617.598;0
 Eschweiler-Aue;-895.1272;3605.027;0
 Eschweiler-Nothberg;-857.7271;3611.078;0
 Eschweiler-St. Jöris;-921.1958;3638.41;0
@@ -2114,7 +2095,6 @@ Etelsen;1131.534;6008.07;0
 Etgersleben;2712.027;4894.328;0
 Ettenhausen;1915.801;3652.168;0
 Etterzhausen;3225.125;1637.664;0
-Ettlingen Albgaubad;619.6016;1492.129;0
 Ettlingen Erbprinz;612.3984;1497.348;0
 Ettlingen Neuwiesenreben;610.1479;1510.184;0
 Ettlingen Spinnerei;639.7075;1489.703;0
@@ -2311,13 +2291,11 @@ Freiberg (Sachs) Ost;4111.474;3783.348;0
 Freiburg (Breisgau) Gbf;188.6479;473.668;0
 Freiburg (Breisgau) Hbf;185.0068;453.4883;0
 Freiburg Süd;158.2866;441.1094;0
-Freiburg West;162.8765;487.2578;0
 Freiburg-Herdern;192.686;465.5938;0
 Freiburg-Littenweiler;225.8418;433.043;0
 Freiburg-St Georgen;155.5073;428.707;0
 Freiburg-Wiehre;194.9907;435.9688;0
 Freiburg-Zähringen;202.0547;483.3672;0
-Freiburger Straße;781.8647;2167.625;0
 Freienohl;470.3354;4195.25;0
 Freienorla;2839.405;3559.98;0
 Freihalden;2161.742;886.9727;0
@@ -3028,7 +3006,6 @@ Hamburg-Hausbruch;1651.464;6537.543;0
 Hamburg-Heimfeld;1688.504;6530.785;0
 Hamburg-Iserbrook;1589.303;6652.203;0
 Hamburg-Klein Flottbek;1619.534;6632.824;0
-Hamburg-Langenfelde Bbf;1660.996;6659.504;0
 Hamburg-Lokstedt;1693.47;6683.668;0
 Hamburg-Nettelnburg;1832.801;6557.922;0
 Hamburg-Neugraben;1615.023;6539.484;0
@@ -3074,7 +3051,6 @@ Hanau West;981.9023;2820.285;0
 Hanau-Klein Auheim;1001.431;2783.684;0
 Hanau-Wilhelmsbad;963.415;2832.344;0
 Handeloh;1612.617;6280.434;0
-Händelstraße;800.1816;2170.625;0
 Hanekenfähr;-98.22754;5442.266;0
 Hanfertal;1223.865;560.7227;0
 Hangelsberg;4394.995;5456.289;0
@@ -3226,7 +3202,6 @@ Heilbronn Hbf;1200.917;1722.203;0
 Heilbronn Sülmertor;1208.669;1728.555;0
 Heilbronn Trappensee;1233.927;1717.535;0
 Heiligenberg;1032.474;5787.609;0
-Heiligenborn;3864.545;3932.34;0
 Heiligendamm;2905.656;7315.578;0
 Heiligenfelde;959.2939;5873.277;0
 Heiligengrabe;3283.366;6227.902;0
@@ -3609,14 +3584,12 @@ Ihrhove;10.8877;6203.07;0
 Ihringen;42.37939;502.7734;0
 Ilberstedt;2874.052;4714.273;0
 Ilfeld;2289.196;4443.535;0
-Ilfeld Bad;2285.438;4459.379;0
 Ilfeld Schreiberwiese;2287.572;4436.844;0
 Illertissen;1865.949;702.3047;0
 Illesheim;2050.769;2102.969;0
 Illingen (Saar);-367.4272;1995.074;0
 Illingen (Württ);991.4707;1512.199;0
 Ilmenau;2408.028;3452.164;0
-Ilmenau Bad;2395.876;3447.266;0
 Ilmenau-Pörlitzer Höhe;2405.036;3463.035;0
 Ilmenau-Roda;2382.855;3465.008;0
 Ilmenau-Wolfsberg;2459.048;3450.773;0
@@ -3818,14 +3791,12 @@ Kayna;3345.049;3813.688;0
 Kefferhausen;1952.806;4143.07;0
 Kehl;201;1093.5;0
 Kehlen;1459.953;98;0
-Keitum;644.0576;8111.945;0
 Kelkheim;654.4619;2825.879;0
 Kelkheim-Hornau;651.9907;2837.063;0
 Kelkheim-Münster;664.0811;2812.559;0
 Kellmünz;1886.675;588.5234;0
 Kelsterbach;711.7363;2741.945;0
 Kemmlitz Bf;3837.016;4112.859;0
-Kemmlitz Ort;3839.432;4115.234;0
 Kemnath-Neustadt;3107.472;2537.84;0
 Kempen (Niederrhein);-743.9209;4225.555;0
 Kempten Hbf;2037.32;137.2305;0
@@ -4005,10 +3976,8 @@ Kolkwitz Süd;4664.556;4744.359;0
 Kölleda;2618.087;4008.82;0
 Kollmarsreute;220.0029;564.8789;0
 Kollnau;284.9473;566.7227;0
-Köln Bbf;-392.6648;3751.75;0
 Köln Bonntor;-385.8037;3710.539;0
 Köln Frankfurter Straße;-316.7319;3708.402;0
-Köln Hansaring;-388.8264;3747.613;0
 Köln Hbf;-386.3606;3741.609;0
 Köln Heinrich-Lübke-Ufer;-367.4429;3689.777;0
 Köln Siegstraße;-360.9805;3673.504;0
@@ -4074,7 +4043,6 @@ Kork;228.3;1084.5;0
 Körle;1408.9;3975.715;0
 Körle Ost;1420.627;3986.07;0
 Korntal;1137.66;1367.832;0
-Korntal Gymnasium;1131.444;1372.402;0
 Kornwestheim;1181.313;1407.895;0
 Korschenbroich;-689.6433;4030.922;0
 Koserow;4321.319;7287.168;0
@@ -4230,7 +4198,7 @@ Langenbach (Oberbay);3159.077;975.4375;0
 Langenbernsdorf;3372.895;3541.375;0
 Langenbuch;3099.184;3337.953;0
 Langendorf;3116.692;4026.742;0
-Langendorf (Stralsd);3663.068;7534.105;0
+Langendorf (Stralsd);3643.376;7526.472;0
 Langeneichstädt;2967.985;4206.5;0
 Langenfeld (Mittelfr);2139.904;2261.895;0
 Langenfeld (Rheinl);-394.4817;3917.844;0
@@ -4626,7 +4594,6 @@ Luhe;3319.021;2252.23;0
 Luhe-Wildenau;3308.147;2273.469;0
 Luhegrund;1705.979;6089.922;0
 Lührsbockel;1657.876;5947.828;0
-Luisenstraße;805.4194;2173.875;0
 Luisenthal (Saar);-475.8142;1860.254;0
 Luisenthal (Thür);2266.452;3573.535;0
 Luitpoldhütte;3104.047;2120.523;0
@@ -4730,7 +4697,7 @@ Mannheim-Seckenheim;736.7144;2075.859;0
 Mannheim-Seckenheim Rathaus;731.4194;2080.891;0
 Mannheim-Waldhof;674.6929;2146.438;0
 Mannheim-Waldhof Gbf;674.6313;2162.063;0
-Mannheim-Wallstadt;722.8481;2115.855;0
+Wallstadt;722.8481;2115.855;0
 Mansfeld (Südharz);2747.34;4480.324;0
 Marbach (bei Münsingen);1363.114;877.5547;0
 Marbach (Kr Fulda);1567.874;3361.793;0
@@ -5020,7 +4987,6 @@ Moritzburg;4324.745;4062.52;0
 Mörlenbach;854.084;2224.48;0
 Morlesau;1619.128;2805.254;0
 Morsbach (Sieg);149.8345;3640.324;0
-Morsum (Sylt);685.562;8092.957;0
 Mörtitz;3591.504;4403.824;0
 Mosbach (Baden);1150.798;1951.867;0
 Mosbach West;1144.233;1946.152;0
@@ -5090,7 +5056,6 @@ München Hackerbrücke;2944.92;637.6289;0
 München Harras;2936.931;611.9727;0
 München Hbf;2950.889;637.0977;0
 München Heimeranplatz;2932.292;628.1289;0
-München Heimeranplatz West;2931.456;628.957;0
 München Hirschgarten;2924.989;639.4883;0
 München Isartor;2969.512;631.6641;0
 München Karlsplatz;2957.558;636.0039;0
@@ -5124,7 +5089,6 @@ München-Neuaubing;2850.473;634.6094;0
 München-Neuperlach Süd;3017.132;583.5273;0
 München-Obermenzing;2890.756;663.7852;0
 München-Pasing;2881.059;644.4531;0
-München-Pasing Bbf;2863.691;654.3789;0
 München-Pasing Gbf;2890.412;641.7031;0
 München-Perlach;3007.283;586.4492;0
 München-Riem;3042.061;644;0
@@ -5186,7 +5150,6 @@ Nagold-Steinberg;851.4272;1050.59;0
 Naila;2979.915;3074.395;0
 Namborn;-292.5967;2159.609;0
 Namedy;-113.4973;3188.355;0
-Nammen-Bad;1032.261;5185.41;0
 Nammen-Grube;1054.084;5170.297;0
 Narsdorf;3655.622;3862.004;0
 Nassau (Erzgeb);4211.521;3623.063;0
@@ -5758,9 +5721,6 @@ Orsoy;-563.4058;4394.469;0
 Ortrand;4363.52;4305.922;0
 Orxhausen;1730.023;4747.938;0
 Osberghausen;-14.42529;3780.523;0
-Oschatz Körnerstraße;3916.142;4196.543;0
-Oschatz Lichtstraße;3913.373;4200.645;0
-Oschatz Süd;3914.289;4191.617;0
 Oschersleben (Bode);2577.297;4954.074;0
 Osnabrück Altstadt;398.5767;5212.773;0
 Osnabrück Hbf;408.6948;5203.875;0
@@ -5989,9 +5949,7 @@ Potsdam Charlottenhof;3796.773;5409.891;0
 Potsdam Griebnitzsee;3856.763;5414.625;0
 Potsdam Hbf;3816.586;5408.492;0
 Potsdam Medienstadt Babelsberg;3853.407;5400.848;0
-Potsdam Park Sanssouci;3781.33;5409.938;0
 Potsdam Pirschheide;3779.647;5387.348;0
-Potsdam Wildpark Gbf;3774.908;5414.328;0
 Potsdam-Babelsberg;3834.602;5410.273;0
 Potsdam-Marquardt;3747.141;5480.66;0
 Potsdam-Rehbrücke;3838.409;5372.688;0
@@ -6131,7 +6089,6 @@ Rauenstein (Thür);2504.823;3151.605;0
 Raumland-Markhausen;606.897;3822.699;0
 Raun;3395.791;3012.957;0
 Raunheim;658.1479;2684.297;0
-Rauschenthal;3865.389;3924.594;0
 Rautenkranz;3528.207;3246.598;0
 Ravensbrück;3827.411;6306.789;0
 Ravensburg;1503.491;210.7891;0
@@ -6315,7 +6272,6 @@ Rodenbach (Dillkr);488.6021;3537.434;0
 Rodenbach bei Hanau;1056.635;2835.57;0
 Rodenkirchen (Oldb);686.7222;6455.082;0
 Rödental;2497.239;3013.023;0
-Rödental Bbf;2488.436;2993.395;0
 Rödental Mitte;2509.851;3022.039;0
 Röderau;4056.484;4241.023;0
 Rödermark-Ober Roden;926.5854;2642.313;0
@@ -6364,7 +6320,6 @@ Rosbach v d Höhe;836.6104;3003.5;0
 Rosdorf;1681.188;4345.867;0
 Rosenau (bei Grafenau);4280.836;1514.414;0
 Rosenberg (Baden);1390.07;2069.922;0
-Rosenbrunnen;805.2598;2163.367;0
 Rosendahl-Holtwick;-240.2756;4912.125;0
 Rosenhagen;3001.789;6140.184;0
 Rosenheim;3382.501;329.5703;0
@@ -7027,7 +6982,6 @@ Stadtroda;2964.484;3673.574;0
 Staffel;370.6016;3121.203;0
 Staffelbach;2302.14;2627.059;0
 Stahe;-1013.346;3807.813;0
-Stahlbad;794.7197;2166.719;0
 Stahringen;1031.053;212.2852;0
 Stakendorf;1954.729;7567.594;0
 Stammbach;2980.982;2879.109;0
@@ -7136,9 +7090,8 @@ Storkow (Mark);4408.563;5290.043;0
 Storzingen;1144.216;599.1523;0
 Stößen;3099.646;3949.402;0
 Stotternheim;2484.429;3861.902;0
-Stralsund Hbf;3701.488;7539.73;0
-Stralsund Rügendamm;3721.791;7538.078;0
-Stralsund-Grünhufe;3676.692;7535.633;0
+Stralsund Hbf;3734;7557;0
+Stralsund-Grünhufe;3657;7528;0
 Strasburg (Uckerm);4193.837;6686.668;0
 Straß-Moos;2556.689;1259.703;0
 Straßberg (Harz);2463.75;4493.824;0
@@ -7166,7 +7119,6 @@ Stühlingen;637.0498;170.7969;0
 Stuhr;878.3662;6039.27;0
 Stumsdorf;3172.115;4513.758;0
 Stuttgart Ebitzweg;1218.463;1342.777;0
-Stuttgart Feuersee;1170.988;1306.84;0
 Stuttgart Hbf;1184.254;1323.199;0
 Stuttgart Nordbahnhof;1187.015;1343.793;0
 Stuttgart Nürnberger Straße;1223.404;1344.68;0
@@ -7217,7 +7169,6 @@ Sulzbach (Saar);-366.1631;1911.457;0
 Sulzbach (Saar) Altenwald;-347.6282;1924.445;0
 Sulzbach (Taunus);712.4214;2816.902;0
 Sulzbach (Taunus) Nord;703.7773;2829.516;0
-Sülzbach Schule;1305.226;1723.008;0
 Sulzbach-Rosenberg;3032.387;2151.445;0
 Sulzbach-Rosenberg Hütte;3058.333;2140.898;0
 Sulzberg;2071.361;96.69531;0
@@ -7237,7 +7188,6 @@ Syke Stadt;931.5869;5913.988;0
 Sylbach;887.8345;4928.969;0
 Syrau;3235.17;3322.57;0
 Sythen;-176.0825;4656.074;0
-Sythen Bbf;-165.0374;4670.168;0
 Taben;-682.7427;2202.367;0
 Tacherting;3705.758;598.6094;0
 Talbahnhof Waching;3367.907;189.8203;0
@@ -7330,7 +7280,6 @@ Tiste;1415.621;6329.84;0
 Titisee;417.1768;344.8945;0
 Tittmoning-Wiesmühl;3841.708;542.5898;0
 Tivoli;1115.563;5793.547;0
-Tivoli/RNZ;737.2539;2149.422;0
 Töging (Inn);3715.814;799.1328;0
 Tonnenheide;820.7485;5370.117;0
 Tönnhausen;1885.843;6431.305;0
@@ -7408,7 +7357,6 @@ Tüßling;3715.246;746.7148;0
 Tuttlingen;898.6084;428.8477;0
 Tuttlingen Gänsäcker;885.374;409.6328;0
 Tuttlingen Nord;917.6001;441.2344;0
-Tuttlingen Schulen;900.3193;434.3984;0
 Tuttlingen Zentrum;906.8501;433.3594;0
 Tutzing;2747.325;370.5352;0
 Twiste;1023.783;4158.309;0
@@ -7582,7 +7530,6 @@ Vierenstraße;3864.298;3267.57;0
 Vierkirchen-Esterhofen;2860.397;880.1094;0
 Viernau;2150.599;3425.84;0
 Viernheim ;746.4668;2155.773;0
-Viernheim Ost;750.7642;2159.383;0
 Viersen;-762.9504;4100.023;0
 Viersen Gbf;-752.3726;4094.828;0
 Viersen-Helenabrunn;-740.562;4080.574;0
@@ -7668,7 +7615,6 @@ Waldershof;3240.423;2697.457;0
 Waldfischbach;69.56958;1891.277;0
 Waldhausen (bei Geislingen);1717.682;1160.152;0
 Waldhausen (bei Schorndorf);1517.116;1327.965;0
-Waldheim;3860.46;3944.992;0
 Waldhof;1520.436;4048.309;0
 Waldhöfe;71.23022;5830.898;0
 Waldkirch;273.2207;561.1719;0
@@ -7698,8 +7644,6 @@ Wallhausen (Helme);2580.144;4321.02;0
 Wallhausen (Württ);1822.347;1798.188;0
 Wallmerod (Westerw);299.8223;3227.25;0
 Wallmow;4441.931;6509.242;0
-Wallstadt Ost;726.77;2114.242;0
-Wallstadt West;718.7847;2118.383;0
 Wallwitz (Saalkr);3072.451;4471.938;0
 Walpertshofen Mitte;-464.3533;1939.43;0
 Walpertshofen Mühlenstraße;-460.9038;1945.297;0
@@ -7818,7 +7762,6 @@ Weimar West;2671.328;3796.234;0
 Weine;717.2197;4387.152;0
 Weingarten (Baden);699.3291;1627.992;0
 Weingarten/Berg;1511.578;246.5273;0
-Weinheim (Bergstr) Hbf;806.334;2177.109;0
 Weinheim;807.0649;2168.867;0
 Weinsberg;1258.416;1725.43;0
 Weinsberg West;1248.813;1729.047;0
@@ -7845,7 +7788,6 @@ Weißwasser Teichstraße;4966.551;4504.734;0
 Weitefeld;286.2798;3481.879;0
 Weiterstadt;747.606;2572.652;0
 Weixdorf;4409.935;4060.523;0
-Weixdorf Bad;4407.249;4049.234;0
 Weizen;657.4849;194.6094;0
 Weizern-Hopferau;2266.178;34.15234;0
 Welgesheim-Zotzenheim;298.9971;2543.699;0
@@ -7929,7 +7871,6 @@ Westerham;3162.894;380.875;0
 Westerhausen (Kr Melle);555.1299;5162.117;0
 Westerholt;-280.9934;4470.234;0
 Westerkappeln;281.8423;5253.59;0
-Westerland (Sylt);608.9233;8130.594;0
 Westerstede-Ocholt;305.9375;6239.199;0
 Westerstetten;1745.485;1037.266;0
 Westerwalsede;1280.765;6043.055;0

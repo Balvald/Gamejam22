@@ -15,7 +15,7 @@ public class WriteCSV : MonoBehaviour
 
         foreach (string[] entry in data)
         {
-            Debug.Log("Writing Geocompatible: " + entry[0] + ";" + entry[1] + ";" + entry[2]);
+            //Debug.Log("Writing Geocompatible: " + entry[0] + ";" + entry[1] + ";" + entry[2]);
             streamWriter.WriteLine(";;;;"+ entry[0] + ";;;;;;;;;;;;;;;;;;;;;;;"+ entry[1] + ";" + entry[2]);
         }
 
@@ -29,7 +29,7 @@ public class WriteCSV : MonoBehaviour
         foreach (string[] entry in data)
         {
             // Need to write if the station is unlocked yet or not.
-            Debug.Log("Writing: " + entry[0] + ";" + entry[1] + ";" + entry[2] + ";" + entry[3]);
+            //Debug.Log("Writing: " + entry[0] + ";" + entry[1] + ";" + entry[2] + ";" + entry[3]);
             streamWriter.WriteLine(entry[0] + ";" + entry[1] + ";" + entry[2] + ";" + entry[3]);
         }
 
