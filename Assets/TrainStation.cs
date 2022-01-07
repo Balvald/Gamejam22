@@ -210,7 +210,7 @@ public struct ResourceEfficiency
 
     public static ResourceEfficiency Default = new ResourceEfficiency(10,10,10,2);
 
-    ResourceEfficiency(int iron, int coal, int money, int speed)
+    ResourceEfficiency(int iron, int coal, int money, int speed = 3)
     {
         Efficiencies = new Dictionary<ResourceType, int>();
         Efficiencies[ResourceType.Iron] = iron;
