@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -21,6 +23,13 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
     private LineConstructor mLineConstructor;
 
+    // -------------------------------------- Resources
+    [SerializeField]
+    private GameObject mGeneratorPrefab;
+
+    private Dictionary<ResourceType, ResourceGenerator> mResourceGenerators = new Dictionary<ResourceType, ResourceGenerator>();
+
+    private ResourceEfficiency mResourceEfficiency = ResourceEfficiency.Default;
 
     void Start()
     {
@@ -139,6 +148,75 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
             }
         }
 
+        foreach (ResourceType type in Enum.GetValues(typeof(ResourceType)))
+        {
+            var btn = GetResourceButton(type);
+            if (btn != null)
+            {
+                btns.Add(btn);
+            }
+        }
+
         return btns;
+    }
+
+    private Button GetResourceButton(ResourceType type)
+    {
+        if (mResourceGenerators.ContainsKey(type))
+        {
+            return null;
+        }
+
+        var eff = mResourceEfficiency[type];
+        if (eff <= 0)
+        {
+            return null;
+        }
+        var o = Instantiate(mLineButtonPrefab);
+        var btn = o.GetComponent<Button>();
+        var tooltip = o.GetComponent<ToolTipAccessor>();
+
+        tooltip.UpdateToolTipString("Build " + type + " Production");
+
+        btn.onClick.AddListener(delegate{AddProducer(type);});
+
+        return btn;
+    }
+
+    public void AddProducer(ResourceType type)
+    {
+        var o = Instantiate(mGeneratorPrefab);
+        var gen = o.GetComponent<ResourceGenerator>();
+
+        gen.ResourceToGenerate = type;
+        gen.Efficiency = mResourceEfficiency[type];
+        gen.SecondsToWait = mResourceEfficiency.Speed;
+
+        o.transform.SetParent(transform);
+
+        o.transform.localPosition = Quaternion.AngleAxis(mResourceGenerators.Keys.Count * 120, Vector3.forward) * (Vector3.up * 3);
+
+        mResourceGenerators[type] = gen;
+    }
+}
+
+public struct ResourceEfficiency
+{
+    public Dictionary<ResourceType, int> Efficiencies;
+
+    public int this[ResourceType type] => Efficiencies[type];
+
+    public int Speed;
+
+    public static ResourceEfficiency Default = new ResourceEfficiency(10,10,10,2);
+
+    ResourceEfficiency(int iron, int coal, int money, int speed)
+    {
+        Efficiencies = new Dictionary<ResourceType, int>();
+        Efficiencies[ResourceType.Iron] = iron;
+        Efficiencies[ResourceType.Coal] = coal;
+        Efficiencies[ResourceType.Money] = money;
+
+        Speed = speed;
     }
 }

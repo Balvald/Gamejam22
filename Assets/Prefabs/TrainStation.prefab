@@ -201,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mLineButtonPrefab: {fileID: 1266125598671433486, guid: d0fd7a8648f440044af35c2fd51dbd4c, type: 3}
   mMaxConnectedLines: 3
+  mGeneratorPrefab: {fileID: 2332390260900468042, guid: 8673c8bff43de5f4aade01738a29ed60, type: 3}
 --- !u!114 &2953177251969399272
 MonoBehaviour:
   m_ObjectHideFlags: 0
