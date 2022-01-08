@@ -17,46 +17,13 @@ public class BasicCameraControls : MonoBehaviour
     {
         // set camera movement to 0-vector 2D vector
         // movement = new Vector3(0, 0, -10);
-        transform.position = new Vector3(0,0,-10);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        /*
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            movement += new Vector3(speed * Time.deltaTime, 0, 0);
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            movement -= new Vector3(speed * Time.deltaTime, 0, 0);
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            movement -= new Vector3(0, speed * Time.deltaTime, 0);
-        }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            movement += new Vector3(0, speed * Time.deltaTime, 0);
-        }
-        transform.position = movement;
-        */
+        transform.position = new Vector3(3500, 4100, -10);
     }
 
     void FixedUpdate()
     {
         transform.position += new Vector3(mMoveVec.x, mMoveVec.y, 0 ) * speed;
     }
-
-    /*
-     * @Superschnizel: Do we even need this?
-    public void MoveCamera(InputAction.CallbackContext input)
-    {
-        mMoveVec = input.ReadValue<Vector2>();
-        Debug.Log(mMoveVec);
-    }
-    */
 
     void OnMoveCamera(InputValue input)
     {
