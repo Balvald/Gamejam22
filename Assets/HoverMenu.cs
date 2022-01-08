@@ -59,7 +59,6 @@ public class HoverMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 }
                 KillButtons();
                 UpdateButtons();
-                mAnimationCoroutine=StartCoroutine(AnimateButtons());
             });
         }
 
@@ -81,8 +80,11 @@ public class HoverMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         foreach (var btn in mButtons)
         {
-            btn.onClick.RemoveAllListeners();
-            Destroy(btn.gameObject);
+            if (!btn.IsDestroyed())
+            {
+                btn.onClick.RemoveAllListeners();
+                Destroy(btn.gameObject);
+            }
         }
     }
 

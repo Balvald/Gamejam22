@@ -10,9 +10,9 @@ public class ResourceManager : MonoBehaviour
 
     public static Dictionary<ResourceType, Sprite> Sprites { private set; get; }
 
-    private Dictionary<ResourceType, Cost> ProducerCosts { set; get; }
+    public Dictionary<ResourceType, Cost> ProducerCosts { set; get; }
 
-    private Cost NewlineCost { set; get; }
+    public Cost NewlineCost { set; get; }
 
     // Start is called before the first frame update
     void Awake()
@@ -128,6 +128,14 @@ public struct Cost
         mCosts[ResourceType.Iron] = iron;
         mCosts[ResourceType.Coal] = coal;
         mCosts[ResourceType.Money] = coal;
+    }
+
+    public override string ToString()
+    {
+        return "Costs: \n" +
+               "Iron: " + Iron + "\n" +
+               "Coal: " + Coal + "\n" +
+               "Money: " + Money;
     }
 }
 

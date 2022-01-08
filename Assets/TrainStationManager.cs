@@ -121,7 +121,7 @@ public class TrainStationManager : MonoBehaviour
             newUnlockableStationPaywall.transform.SetParent(UnlockableStationParent.transform, true);
             newUnlockableStationPaywall.transform.localScale = new Vector3(1, 1, 1);
             newUnlockableStationPaywall.GetComponent<PayWall>().SetObjectToUnlock(currentTrainStation);
-            newUnlockableStationPaywall.AddComponent<ToolTipAccessor>().UpdateToolTipString(currentTrainStation.name + " (Not Owned)");
+            newUnlockableStationPaywall.AddComponent<ToolTipAccessor>().UpdateToolTipString(currentTrainStation.name + " (Not Owned)\n Cost:\nMoney: 100");
             currentTrainStation.transform.SetParent(newUnlockableStationPaywall.transform, true);
         }
 

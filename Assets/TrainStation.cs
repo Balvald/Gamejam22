@@ -136,7 +136,7 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
             var btn = o.GetComponent<Button>();
             var tooltip = o.GetComponent<ToolTipAccessor>();
 
-            tooltip.UpdateToolTipString("start new Line here");
+            tooltip.UpdateToolTipString("start new Line here" + "\n" + mResourceManager.NewlineCost);
 
             btn.onClick.AddListener(delegate{
                 if (mResourceManager.PerformBuy())
@@ -156,7 +156,7 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
                 var btn = o.GetComponent<Button>();
                 var tooltip = o.GetComponent<ToolTipAccessor>();
 
-                tooltip.UpdateToolTipString("continue Line " + line.Key);
+                tooltip.UpdateToolTipString("continue Line " + line.Key + "\n" + mResourceManager.NewlineCost);
 
                 btn.onClick.AddListener(delegate{
                     if (mResourceManager.PerformBuy())
@@ -197,8 +197,10 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         var btn = o.GetComponent<Button>();
         var tooltip = o.GetComponent<ToolTipAccessor>();
         var image = o.GetComponent<Image>();
-        
-        tooltip.UpdateToolTipString("Build " + type + " Production");
+
+        var tooltipString = "Build " + type + " Production\n " + mResourceManager.ProducerCosts[type].ToString();
+
+        tooltip.UpdateToolTipString(tooltipString);
 
         btn.onClick.AddListener(delegate{
             if (mResourceManager.PerformBuy(type))
