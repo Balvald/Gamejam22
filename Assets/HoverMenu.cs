@@ -20,11 +20,13 @@ public class HoverMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private float mDistance = 1;
 
     private Coroutine mAnimationCoroutine;
-    // Start is called before the first frame update
+
+    private LineConstructor mLineConstructor;
 
 
     void Start()
     {
+        mLineConstructor = FindObjectOfType<LineConstructor>();
         mCanvas = GetComponentInChildren<Canvas>();
         mButtons = new List<Button>();
         mCanvas.worldCamera = Camera.main;
@@ -33,6 +35,10 @@ public class HoverMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (mLineConstructor.HasSelected)
+        {
+            return;
+        }
         UpdateButtons();
         mCanvas.transform.position = transform.position;
         mCanvas.gameObject.SetActive(true);
@@ -63,7 +69,10 @@ public class HoverMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerExit(PointerEventData eventData)
     {
         mCanvas.gameObject.SetActive(false);
-        StopCoroutine(mAnimationCoroutine);
+        if (mAnimationCoroutine != null)
+        {
+            StopCoroutine(mAnimationCoroutine);
+        }
         ToolTip.HideToolTip_Static(); // just in case
         KillButtons();
     }

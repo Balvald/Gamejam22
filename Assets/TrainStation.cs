@@ -35,6 +35,12 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
     private ResourceManager mResourceManager;
 
+    [SerializeField]
+    private Material mDefaultMaterial;
+
+    [SerializeField]
+    private Material mSelectedMaterial;
+
     void Start()
     {
         Physics.queriesHitTriggers = true;
@@ -242,6 +248,16 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     public int GetResourceEfficiency(ResourceType type)
     {
         return mResourceEfficiency.Efficiencies[type];
+    }
+
+    public void SelectStation()
+    {
+        GetComponent<SpriteRenderer>().material = mSelectedMaterial;
+    }
+
+    public void DeselectStation()
+    {
+        GetComponent<SpriteRenderer>().material = mDefaultMaterial;
     }
 }
 

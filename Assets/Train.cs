@@ -83,7 +83,11 @@ public class Train : MonoBehaviour
 
         // look to the front
         Vector3 relativePos = transform.position - mLastPosition;
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
+        Quaternion rotation = Quaternion.LookRotation(relativePos) * (mMovement == TrainMovement.Backwards
+                                  ? Quaternion.identity
+                                  : Quaternion.Euler(0,
+                                      0,
+                                      180));
         rotation.x = transform.rotation.x;
         rotation.y = transform.rotation.y;
         transform.rotation = rotation;

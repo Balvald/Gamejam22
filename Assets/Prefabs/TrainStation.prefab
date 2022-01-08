@@ -203,6 +203,8 @@ MonoBehaviour:
   mLineButtonPrefab: {fileID: 1266125598671433486, guid: d0fd7a8648f440044af35c2fd51dbd4c, type: 3}
   mMaxConnectedLines: 3
   mGeneratorPrefab: {fileID: 2332390260900468042, guid: 8673c8bff43de5f4aade01738a29ed60, type: 3}
+  mDefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  mSelectedMaterial: {fileID: 2100000, guid: 0b15adcef404edc4183ef214e0d19ce3, type: 2}
 --- !u!114 &2953177251969399272
 MonoBehaviour:
   m_ObjectHideFlags: 0

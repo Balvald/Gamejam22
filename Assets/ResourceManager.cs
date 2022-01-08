@@ -18,6 +18,14 @@ public class ResourceManager : MonoBehaviour
     void Awake()
     {
         PrepareDictionary();
+        SetStartingResources();
+    }
+
+    private void SetStartingResources()
+    {
+        mResources[ResourceType.Iron] = 300;
+        mResources[ResourceType.Coal] = 300;
+        mResources[ResourceType.Money] = 700;
     }
 
     private void PrepareDictionary()

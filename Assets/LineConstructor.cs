@@ -6,6 +6,26 @@ public class LineConstructor : MonoBehaviour
 {
     private TrainStation mSelectedStation;
 
+    private TrainStation SelectedStation
+    {
+        set
+        {
+            if (value == null)
+            {
+                if (mSelectedStation != null)
+                {
+                    mSelectedStation.DeselectStation();
+                }
+                mSelectedStation = null;
+                return;
+            }
+            mSelectedStation = value;
+            mSelectedStation.SelectStation();
+
+        }
+        get => mSelectedStation;
+    }
+
     [SerializeField]
     private GameObject mLinePrefab;
     [SerializeField]
@@ -24,7 +44,7 @@ public class LineConstructor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (mSelectedStation == null)
+        if (SelectedStation == null)
         {
             return;
         }
@@ -34,38 +54,38 @@ public class LineConstructor : MonoBehaviour
 
     public void HandleStationClick(TrainStation station, int lineId = -1)
     {
-        if (mSelectedStation == null)
+        if (SelectedStation == null)
         {
-            mSelectedStation = station;
+            SelectedStation = station;
             return;
         }
 
-        if (station == mSelectedStation || 
-            station.GetComponent<TrainStation>().HasAdjacent(mSelectedStation) ||
-            Vector3.Distance(mSelectedStation.transform.position, station.transform.position) > mMaxDistance)
+        if (station == SelectedStation || 
+            station.GetComponent<TrainStation>().HasAdjacent(SelectedStation) ||
+            Vector3.Distance(SelectedStation.transform.position, station.transform.position) > mMaxDistance)
         {
             
             Debug.Log(
                 "buidling Failed: " + 
-                (station == mSelectedStation) + ", " + 
-                station.GetComponent<TrainStation>().HasAdjacent(mSelectedStation) + ", " + 
-                (Vector3.Distance(mSelectedStation.transform.position, station.transform.position) > mMaxDistance));
-            mSelectedStation = null;
+                (station == SelectedStation) + ", " + 
+                station.GetComponent<TrainStation>().HasAdjacent(SelectedStation) + ", " + 
+                (Vector3.Distance(SelectedStation.transform.position, station.transform.position) > mMaxDistance));
+            SelectedStation = null;
             return;
         }
 
         TrainLine line;
-        if (mSelectedStation.TryGetTrainLine(lineId) != null)
+        if (SelectedStation.TryGetTrainLine(lineId) != null)
         {
-            line = mSelectedStation.TryGetTrainLine(lineId);
-            line.AddStation(station, mSelectedStation);
-            mSelectedStation = null;
+            line = SelectedStation.TryGetTrainLine(lineId);
+            line.AddStation(station, SelectedStation);
+            SelectedStation = null;
             return;
         }
 
         line = Instantiate(mLinePrefab).GetComponent<TrainLine>();
         line.transform.SetParent(transform, false);
-        line.Initialize(mSelectedStation, station, mIdCounter);
+        line.Initialize(SelectedStation, station, mIdCounter);
 
         // Just for Testing make a Train here
         var train = Instantiate(mTrainPrefab).GetComponent<Train>();
@@ -77,7 +97,7 @@ public class LineConstructor : MonoBehaviour
 
         mIdCounter++;
 
-        mSelectedStation = null;
+        SelectedStation = null;
     }
 
     public void ResetIDCounter()
