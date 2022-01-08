@@ -5,7 +5,17 @@ using UnityEngine;
 
 public class ResourceGenerator : MonoBehaviour
 {
-    public ResourceType ResourceToGenerate { get; set; }
+    private ResourceType mResourceToGenerate;
+
+    public ResourceType ResourceToGenerate
+    {
+        get => mResourceToGenerate;
+        set
+        {
+            mResourceToGenerate = value;
+            SetSprite();
+        }
+    }
     public int SecondsToWait { get; set; }
 
     private Coroutine mCoroutine;
@@ -33,6 +43,11 @@ public class ResourceGenerator : MonoBehaviour
     public void Produce()
     {
         mResourceManager.AddResource(ResourceToGenerate, Efficiency);
+    }
+
+    private void SetSprite()
+    {
+        GetComponent<SpriteRenderer>().sprite = ResourceManager.Sprites[ResourceToGenerate];
     }
 
     void OnDestroy()

@@ -45,6 +45,16 @@ public class HoverMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             btn.transform.SetParent(mCanvas.transform);
             btn.transform.position = Vector3.zero;
+            btn.onClick.AddListener(delegate
+            {
+                if (mAnimationCoroutine != null)
+                {
+                    StopCoroutine(mAnimationCoroutine);
+                }
+                KillButtons();
+                UpdateButtons();
+                mAnimationCoroutine=StartCoroutine(AnimateButtons());
+            });
         }
 
         mAnimationCoroutine = StartCoroutine(AnimateButtons());
@@ -62,6 +72,7 @@ public class HoverMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         foreach (var btn in mButtons)
         {
+            btn.onClick.RemoveAllListeners();
             Destroy(btn.gameObject);
         }
     }

@@ -7,6 +7,8 @@ public class ResourceManager : MonoBehaviour
 {
     private Dictionary<ResourceType, int> mResources;
 
+    public static Dictionary<ResourceType, Sprite> Sprites { private set; get; }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -16,9 +18,11 @@ public class ResourceManager : MonoBehaviour
     private void PrepareDictionary()
     {
         mResources = new Dictionary<ResourceType, int>();
+        Sprites = new Dictionary<ResourceType, Sprite>();
         foreach (ResourceType type in Enum.GetValues(typeof(ResourceType)))
         {
             mResources[type] = 0;
+            Sprites[type] = Resources.Load<Sprite>(type.ToString());
         }
     }
 
@@ -58,6 +62,7 @@ public class ResourceManager : MonoBehaviour
         // TODO: this is not adaptable to more Resources
         if (!HasResource(iron, coal, money))
         {
+            MessageBoard.SendMessage("Not Enough Resources!", Color.red);
             return false;
         }
 

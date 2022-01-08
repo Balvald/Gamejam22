@@ -21,6 +21,19 @@ public class TrainLine : MonoBehaviour
 
     private List<Train> mTrains;
 
+
+    private Color mLineColor = Color.white;
+
+    public Color LineColor
+    {
+        get => mLineColor;
+        set
+        {
+            mLineColor = value;
+            GetComponent<MeshRenderer>().material.color = value;
+        }
+    }
+
     // Start is called before the first frame update
     void Awake()
     {

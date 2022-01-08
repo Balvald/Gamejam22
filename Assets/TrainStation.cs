@@ -177,10 +177,13 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         var o = Instantiate(mLineButtonPrefab);
         var btn = o.GetComponent<Button>();
         var tooltip = o.GetComponent<ToolTipAccessor>();
-
+        var image = o.GetComponent<Image>();
+        
         tooltip.UpdateToolTipString("Build " + type + " Production");
 
         btn.onClick.AddListener(delegate{AddProducer(type);});
+
+        image.sprite = ResourceManager.Sprites[type];
 
         return btn;
     }

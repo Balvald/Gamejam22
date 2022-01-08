@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7836f0de992d54545839fdb6eff2283a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spacing: 1
+  spacing: 0.519
   roadWidth: 1
   autoUpdate: 0
   tiling: 1

@@ -18,6 +18,9 @@ public class LineConstructor : MonoBehaviour
 
     public bool HasSelected => mSelectedStation != null;
 
+    [SerializeField]
+    private List<Color> mAllowedLineColors = new List<Color>();
+
     // Update is called once per frame
     void Update()
     {
@@ -69,6 +72,8 @@ public class LineConstructor : MonoBehaviour
         train.transform.SetParent(line.transform, false);
         train.SetLine(line);
         line.AddTrain(train);
+
+        line.LineColor = mAllowedLineColors[mIdCounter % mAllowedLineColors.Count];
 
         mIdCounter++;
 
