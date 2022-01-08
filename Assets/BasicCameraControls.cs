@@ -17,7 +17,8 @@ public class BasicCameraControls : MonoBehaviour
     {
         // set camera movement to 0-vector 2D vector
         // movement = new Vector3(0, 0, -10);
-        transform.position = new Vector3(3500, 4100, -10);
+        transform.position = new Vector3(3440, 4220, -10);
+        GetComponent<Camera>().orthographicSize = 53;
     }
 
     void FixedUpdate()
