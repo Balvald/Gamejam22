@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,10 +28,12 @@ public class InGameMenu : MonoBehaviour
         if (IsGamePaused)
         {
             PauseMenuUI.SetActive(true);
+            Time.timeScale = 0f;
         }
         else
         {
             PauseMenuUI.SetActive(false);
+            Time.timeScale = 1f;
         }
     }
 
@@ -44,6 +47,7 @@ public class InGameMenu : MonoBehaviour
         // IsGamePaused should be true here!
         IsGamePaused = !IsGamePaused;
         PauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void SaveMenuButton()

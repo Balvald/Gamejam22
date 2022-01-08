@@ -13,11 +13,13 @@ public class MainMenu : MonoBehaviour
     public GameObject creditsButton;
     public GameObject exitButton;
     public GameObject title;
+    public GameObject loadingSplash;
 
     void Start()
     {
         creditCanvas.SetActive(false);
         storyCanvas.SetActive(false);
+        loadingSplash.SetActive(false);
     }
 
     public void ExitButton()
@@ -58,6 +60,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
+        loadingSplash.SetActive(true);
         SceneManager.LoadScene("Game");
     }
 }
