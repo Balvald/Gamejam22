@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
@@ -8,6 +9,10 @@ public class ResourceManager : MonoBehaviour
     private Dictionary<ResourceType, int> mResources;
 
     public static Dictionary<ResourceType, Sprite> Sprites { private set; get; }
+
+    private Dictionary<ResourceType, Cost> ProducerCosts { set; get; }
+
+    private Cost NewlineCost { set; get; }
 
     // Start is called before the first frame update
     void Awake()
@@ -24,6 +29,13 @@ public class ResourceManager : MonoBehaviour
             mResources[type] = 0;
             Sprites[type] = Resources.Load<Sprite>(type.ToString());
         }
+
+        ProducerCosts = new Dictionary<ResourceType, Cost>();
+        ProducerCosts[ResourceType.Iron] = new Cost(20, 70, 100);
+        ProducerCosts[ResourceType.Coal] = new Cost(70, 10, 100);
+        ProducerCosts[ResourceType.Money] = new Cost(50, 50, 200);
+
+        NewlineCost = new Cost(50, 50, 50);
     }
 
     public void AddResource(ResourceType type, int amount)
@@ -52,6 +64,11 @@ public class ResourceManager : MonoBehaviour
                HasResource(ResourceType.Money, money);
     }
 
+    public bool HasResource(Cost cost)
+    {
+        return HasResource(cost.Iron, cost.Coal, cost.Money);
+    }
+
     public int GetResourceAmount(ResourceType type)
     {
         return mResources[type];
@@ -62,7 +79,11 @@ public class ResourceManager : MonoBehaviour
         // TODO: this is not adaptable to more Resources
         if (!HasResource(iron, coal, money))
         {
-            MessageBoard.SendMessage("Not Enough Resources!", Color.red);
+            var message = "Not enough ";
+            message += !HasResource(ResourceType.Iron, iron) ? "Iron " : "";
+            message += !HasResource(ResourceType.Coal, coal) ? " Coal" : "";
+            message += !HasResource(ResourceType.Money, money) ? " Money" : "";
+            MessageBoard.SendMessage(message, Color.red);
             return false;
         }
 
@@ -70,6 +91,35 @@ public class ResourceManager : MonoBehaviour
         RemoveResource(ResourceType.Coal, coal);
         RemoveResource(ResourceType.Money, money);
         return true;
+    }
+
+    public bool PerformBuy(ResourceType type)
+    {
+        var c = ProducerCosts[type];
+        return PerformBuy(c.Iron, c.Coal, c.Money);
+    }
+
+    public bool PerformBuy()
+    {
+        return PerformBuy(NewlineCost.Iron, NewlineCost.Coal, NewlineCost.Money);
+    }
+}
+
+public struct Cost
+{
+    private Dictionary<ResourceType, int> mCosts;
+
+    public int this[ResourceType type] => mCosts[type];
+
+    public int Iron => mCosts[ResourceType.Iron];
+    public int Coal=> mCosts[ResourceType.Coal];
+    public int Money => mCosts[ResourceType.Money];
+    public Cost(int iron , int coal, int money)
+    {
+        mCosts = new Dictionary<ResourceType, int>();
+        mCosts[ResourceType.Iron] = iron;
+        mCosts[ResourceType.Coal] = coal;
+        mCosts[ResourceType.Money] = coal;
     }
 }
 

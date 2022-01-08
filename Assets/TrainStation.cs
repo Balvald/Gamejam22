@@ -33,10 +33,13 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
     private ResourceEfficiency mResourceEfficiency = ResourceEfficiency.Default;
 
+    private ResourceManager mResourceManager;
+
     void Start()
     {
         Physics.queriesHitTriggers = true;
         mLineConstructor = FindObjectOfType<LineConstructor>();
+        mResourceManager = FindObjectOfType<ResourceManager>();
     }
 
     // Update is called once per frame
@@ -129,7 +132,12 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
             tooltip.UpdateToolTipString("start new Line here");
 
-            btn.onClick.AddListener(delegate{CallConstructor();});
+            btn.onClick.AddListener(delegate{
+                if (mResourceManager.PerformBuy())
+                {
+                    CallConstructor();
+                }
+            });
 
             btns.Add(btn);
         }
@@ -144,7 +152,12 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
                 tooltip.UpdateToolTipString("continue Line " + line.Key);
 
-                btn.onClick.AddListener(delegate{CallConstructor(line.Key);});
+                btn.onClick.AddListener(delegate{
+                    if (mResourceManager.PerformBuy())
+                    {
+                        CallConstructor(line.Key);
+                    }
+                });
 
                 btns.Add(btn);
             }
@@ -181,7 +194,12 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         
         tooltip.UpdateToolTipString("Build " + type + " Production");
 
-        btn.onClick.AddListener(delegate{AddProducer(type);});
+        btn.onClick.AddListener(delegate{
+            if (mResourceManager.PerformBuy(type))
+            {
+                AddProducer(type);
+            }
+        });
 
         image.sprite = ResourceManager.Sprites[type];
 
