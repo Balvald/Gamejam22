@@ -7,13 +7,19 @@ public class MainMenu : MonoBehaviour
 {
 
     public GameObject creditCanvas;
+    public GameObject storyCanvas;
     public GameObject playButton;
+    public GameObject storyButton;
     public GameObject creditsButton;
     public GameObject exitButton;
+    public GameObject title;
+    public GameObject loadingSplash;
 
     void Start()
     {
         creditCanvas.SetActive(false);
+        storyCanvas.SetActive(false);
+        loadingSplash.SetActive(false);
     }
 
     public void ExitButton()
@@ -28,18 +34,33 @@ public class MainMenu : MonoBehaviour
         playButton.SetActive(false);
         creditsButton.SetActive(false);
         exitButton.SetActive(false);
+        storyButton.SetActive(false);
+    }
+
+    public void storyScreenButton()
+    {
+        title.SetActive(false);
+        playButton.SetActive(false);
+        creditsButton.SetActive(false);
+        exitButton.SetActive(false);
+        storyButton.SetActive(false);
+        storyCanvas.SetActive(true);
     }
 
     public void ReturnFromCreditsButton()
     {
+        title.SetActive(true);
+        storyCanvas.SetActive(false);
         creditCanvas.SetActive(false);
         playButton.SetActive(true);
         creditsButton.SetActive(true);
         exitButton.SetActive(true);
+        storyButton.SetActive(true);
     }
 
     public void StartGame()
     {
+        loadingSplash.SetActive(true);
         SceneManager.LoadScene("Game");
     }
 }

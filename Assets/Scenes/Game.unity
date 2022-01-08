@@ -1724,7 +1724,6 @@ MonoBehaviour:
   PayWallPrefab: {fileID: 9219191597237964838, guid: 4e8fdd8bf8bcc054aa45adb9d135df9f, type: 3}
   CSVHandler: {fileID: 1752140144}
   UnlockableStationParent: {fileID: 1937961512}
-  datapath: ./Assets/csvSavetestBackup.csv
 --- !u!114 &449844936
 MonoBehaviour:
   m_ObjectHideFlags: 0

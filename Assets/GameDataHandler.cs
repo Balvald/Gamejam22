@@ -7,10 +7,14 @@ public class GameDataHandler : MonoBehaviour
 {
     string saveFile;
 
-    public GameObject trainStationManager;
-    public GameObject lineConstructor;
-    public GameObject resourceManager;
-    public GameObject unlockableStationParent;
+    [SerializeField]
+    private GameObject trainStationManager;
+    [SerializeField]
+    private GameObject lineConstructor;
+    [SerializeField]
+    private GameObject resourceManager;
+    [SerializeField]
+    private GameObject unlockableStationParent;
     [SerializeField]
     private GameObject mTrainPrefab;
     [SerializeField]
@@ -79,6 +83,10 @@ public class GameDataHandler : MonoBehaviour
                 currentStationData.coalbuilt = false;
                 currentStationData.moneybuilt = false;
 
+                currentStationData.ironEfficiency = trainStation.GetResourceEfficiency(ResourceType.Iron);
+                currentStationData.coalEfficiency = trainStation.GetResourceEfficiency(ResourceType.Coal);
+                currentStationData.moneyEfficiency = trainStation.GetResourceEfficiency(ResourceType.Money);
+
                 currentStationData.unlocked = true;
 
                 foreach (Transform child in gameObject.transform)
@@ -114,6 +122,8 @@ public class GameDataHandler : MonoBehaviour
         {
             foreach (Transform grandchild in child)
             {
+                TrainStation trainStation = grandchild.GetComponent<TrainStation>();
+
                 StationData currentStationData = new StationData();
 
                 currentStationData.stationName = grandchild.name;
@@ -123,10 +133,14 @@ public class GameDataHandler : MonoBehaviour
                 currentStationData.coalbuilt = false;
                 currentStationData.moneybuilt = false;
 
+                currentStationData.ironEfficiency = trainStation.GetResourceEfficiency(ResourceType.Iron);
+                currentStationData.coalEfficiency = trainStation.GetResourceEfficiency(ResourceType.Coal);
+                currentStationData.moneyEfficiency = trainStation.GetResourceEfficiency(ResourceType.Money);
+
                 currentStationData.posX = grandchild.transform.position.x;
                 currentStationData.posY = grandchild.transform.position.y;
 
-                TrainStation trainStation = grandchild.GetComponent<TrainStation>();
+                
                 trainStation.stationDataIndex = stationIndex;
                 stationIndex++;
                 currentAllStationData.Add(currentStationData);
