@@ -1577,10 +1577,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: It's the mid 1800's. The Industrial Revolution finally comes into swing
-    in the German states. You start out as the manager of a railway Company to transport
-    iron, coal and earn money by transporting people on the new train lines you will
-    create. Go forth and built the train network to push the industrialisation further!
+  m_text: It's the mid 1800s. The industrial revolution finally comes into swing
+    in the German states. You start out as the manager of a railway company to transport
+    iron, coal and earn money by transporting people on the new train lines that
+    you will create. Go forth and built the train network to push the industrialization
+    further!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
