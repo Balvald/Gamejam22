@@ -23,6 +23,11 @@ public class GameDataHandler : MonoBehaviour
         //saveFile = Application.persistentDataPath + @"/saves/slot1.json";
     }
 
+    void Start()
+    {
+        InitialGameState();
+    }
+
     public void switchSaveSlot(string slot)
     {
         saveFile = Application.persistentDataPath + @"/saves/" + slot;
@@ -201,6 +206,20 @@ public class GameDataHandler : MonoBehaviour
         // Give Player his resources specified in Save File
         GiveResourcesBackToPlayer();
 
+    }
+
+    public void InitialGameState()
+    {
+        var json = Resources.Load<TextAsset>("main");
+        gameData = JsonUtility.FromJson<GameData>(json.text);
+
+        // Rebuild Stations
+        RebuildStationsFromData();
+        // Rebuild TrainLines and Trains
+        lineConstructor.GetComponent<LineConstructor>().ResetIDCounter();
+        InstantiateTrainLinesFromData();
+        // Give Player his resources specified in Save File
+        GiveResourcesBackToPlayer();
     }
 
     public void GiveResourcesBackToPlayer()
