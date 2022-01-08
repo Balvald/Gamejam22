@@ -205,6 +205,14 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     {
         return stationDataIndex;
     }
+
+    public void NotifyTrainPassing()
+    {
+        foreach (var gen in mResourceGenerators)
+        {
+            gen.Value.Produce();
+        }
+    }
 }
 
 public struct ResourceEfficiency

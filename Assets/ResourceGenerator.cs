@@ -17,7 +17,7 @@ public class ResourceGenerator : MonoBehaviour
     void Start()
     {
         mResourceManager = FindObjectOfType<ResourceManager>();
-        mCoroutine = StartCoroutine(GenerateResource());
+        // mCoroutine = StartCoroutine(GenerateResource());
     }
 
     private IEnumerator GenerateResource()
@@ -30,8 +30,13 @@ public class ResourceGenerator : MonoBehaviour
         }
     }
 
+    public void Produce()
+    {
+        mResourceManager.AddResource(ResourceToGenerate, Efficiency);
+    }
+
     void OnDestroy()
     {
-        StopCoroutine(mCoroutine);
+        StopAllCoroutines();
     }
 }

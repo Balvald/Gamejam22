@@ -86,6 +86,7 @@ public class TrainLine : MonoBehaviour
         foreach (var train in mTrains)
         {
             train.CurrentPosition += amount;
+            train.LastSegment += 1;
         }
     }
 
@@ -107,5 +108,10 @@ public class TrainLine : MonoBehaviour
     public void AddTrain(Train train)
     {
         mTrains.Add(train);
+    }
+
+    public void NotifyStation(int stationIndex)
+    {
+        mStations[stationIndex].NotifyTrainPassing();
     }
 }

@@ -24,20 +24,7 @@ public class PathCreator : MonoBehaviour
 
     public void CreatePathFromPositions(Vector3 pos1, Vector3 pos2)
     {
-        Vector2 left;
-        Vector2 right;
-        if (pos1.x <= pos2.x)
-        {
-            left = new Vector2(pos1.x, pos1.y);
-            right = new Vector2(pos2.x, pos2.y);
-        }
-        else
-        {
-            right = new Vector2(pos1.x, pos1.y);
-            left = new Vector2(pos2.x, pos2.y);
-        }
-
-        path = new Path(left, right);
+        path = new Path(pos1, pos2);
     }
 
     public void AddPosition(Vector3 position, bool atFront)

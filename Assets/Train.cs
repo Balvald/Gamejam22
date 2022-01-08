@@ -10,7 +10,7 @@ public class Train : MonoBehaviour
     [SerializeField]
     private float mSpeed = 1;
 
-    private int mLastSegment;
+    public int LastSegment { get; set; }
 
     public float CurrentPosition { get; set; }
 
@@ -51,10 +51,16 @@ public class Train : MonoBehaviour
 
         var t = CurrentPosition - currentSegment;
 
-        if (mLastSegment != currentSegment)
+        // TODO: this is horrible to read...
+
+        var inNewSegment = LastSegment != currentSegment;
+        var atLastStation = currentSegment == path.NumSegments - 1 && t >= 1;
+        var atFirstStation = currentSegment == 0 && t <= 0;
+
+        if (LastSegment != currentSegment)
         {
-            mLastSegment = currentSegment;
-            StartCoroutine(WaitAtStation());
+            LastSegment = currentSegment;
+            StartCoroutine(WaitAtStation(currentSegment));
             return;
         }
 
@@ -62,12 +68,14 @@ public class Train : MonoBehaviour
         {
             mMovement = TrainMovement.Backwards;
             t = 1;
+            StartCoroutine(WaitAtStation(currentSegment + 1));
         }
 
-        if (currentSegment == 0 && t < 0)
+        if (currentSegment == 0 && t <= 0)
         {
             mMovement = TrainMovement.Forwards;
             t = 0;
+            StartCoroutine(WaitAtStation(0));
         }
 
         var pos = path.GetPositionInSegment(currentSegment, t);
@@ -79,9 +87,10 @@ public class Train : MonoBehaviour
         rotation.x = transform.rotation.x;
         rotation.y = transform.rotation.y;
         transform.rotation = rotation;
+
     }
 
-    private IEnumerator WaitAtStation()
+    private IEnumerator WaitAtStation(int stationIndex)
     {
         var currentMovement = mMovement;
         mMovement = TrainMovement.Idle;
@@ -89,6 +98,8 @@ public class Train : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         mMovement = currentMovement;
+
+        mAssignedTrainLine.NotifyStation(stationIndex);
     }
 
     public enum TrainMovement
