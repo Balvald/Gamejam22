@@ -1,4 +1,4 @@
-using System.Globalization;
+//using System.Globalization;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +13,13 @@ public class TrainStationManager : MonoBehaviour
     public GameObject PayWallPrefab;
     public GameObject CSVHandler;
     public GameObject UnlockableStationParent;
-    public string datapath;
-    public List<string[]> StationData;
-    private TrainStation[] trainStations;
+    //public string datapath;
+    //public List<string[]> StationData;
+    //private TrainStation[] trainStations;
 
     // Culture Crap: Needed to force that we use decimal points when converting numbers to strings and back.
-    private CultureInfo cul = CultureInfo.InvariantCulture; // using this in Parse forces it to read a "." as a decimal point if the string parsed is indeed a number
-    NumberFormatInfo nfi = new NumberFormatInfo(); // We need a number format to force toString to write decimal points "." instead of decimal commas ",".
+    //private CultureInfo cul = CultureInfo.InvariantCulture; // using this in Parse forces it to read a "." as a decimal point if the string parsed is indeed a number
+    //NumberFormatInfo nfi = new NumberFormatInfo(); // We need a number format to force toString to write decimal points "." instead of decimal commas ",".
 
    // Idea creating all the stations we have at the start.
    // Player selects the first station as his Main hub from where his trian empire expands.
@@ -42,7 +42,7 @@ public class TrainStationManager : MonoBehaviour
     void Awake()
     {
         // Set Number Format Info accordingly.
-        nfi.NumberDecimalSeparator = ".";
+        //nfi.NumberDecimalSeparator = ".";
         //GetGeoStationData();
         //GetGameStationData();
         //CreateStations(StationData, false);
@@ -58,7 +58,7 @@ public class TrainStationManager : MonoBehaviour
     {
         // pass
     }
-
+    /*
     void GetGeoStationData()
     {
         ReadCSV script = CSVHandler.GetComponent<ReadCSV>();
@@ -71,6 +71,7 @@ public class TrainStationManager : MonoBehaviour
         StationData = script.ReadCustomCSVFile(datapath);
     }
 
+    /*
     public void CreateStations(List<string[]> trainStationData, bool geo)
     {
         //Debug.Log("Creating Stations");
@@ -102,7 +103,8 @@ public class TrainStationManager : MonoBehaviour
             }
         }
     }
-
+    */
+    
     public void CreateStation(StationData stationData)
     {
         //Debug.Log("Creating: " + data[0] + " at: " + data[1] + " ; " + data[2]);
@@ -125,9 +127,9 @@ public class TrainStationManager : MonoBehaviour
 
         TrainStation trainStation = currentTrainStation.GetComponent<TrainStation>();
 
-        // TODO: Write the saved efficiency values into the file.
-
-        // Put efficiency values into station where it is appropiate.
+        ResourceEfficiency resEff = new ResourceEfficiency(stationData.ironEfficiency, stationData.coalEfficiency, stationData.moneyEfficiency);
+        // apply station data to Resource Efficiency Object
+        trainStation.SetResourceEfficiency(resEff);
 
         // Need to create Resource Generators
 
@@ -147,7 +149,7 @@ public class TrainStationManager : MonoBehaviour
         }
 
     }
-
+    /*
     public void SetStationInactive(GameObject trainStation)
     {
         trainStation.SetActive(true);
@@ -158,6 +160,7 @@ public class TrainStationManager : MonoBehaviour
         trainStation.SetActive(false);
     }
 
+    /*
     public void UpdateStationData()
     {
         StationData = new List<string[]>();

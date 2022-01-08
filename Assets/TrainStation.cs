@@ -205,6 +205,16 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     {
         return stationDataIndex;
     }
+
+    public void SetResourceEfficiency(ResourceEfficiency resEff)
+    {
+        mResourceEfficiency = resEff;
+    }
+
+    public int GetResourceEfficiency(ResourceType type)
+    {
+        return mResourceEfficiency.Efficiencies[type];
+    }
 }
 
 public struct ResourceEfficiency
@@ -217,7 +227,7 @@ public struct ResourceEfficiency
 
     public static ResourceEfficiency Default = new ResourceEfficiency(10,10,10,2);
 
-    ResourceEfficiency(int iron, int coal, int money, int speed = 3)
+    public ResourceEfficiency(int iron, int coal, int money, int speed = 3)
     {
         Efficiencies = new Dictionary<ResourceType, int>();
         Efficiencies[ResourceType.Iron] = iron;

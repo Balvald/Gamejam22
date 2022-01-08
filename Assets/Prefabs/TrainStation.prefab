@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e9d0264a1754c40acf05c108482378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stationDataIndex: 0
   mLineButtonPrefab: {fileID: 1266125598671433486, guid: d0fd7a8648f440044af35c2fd51dbd4c, type: 3}
   mMaxConnectedLines: 3
   mGeneratorPrefab: {fileID: 2332390260900468042, guid: 8673c8bff43de5f4aade01738a29ed60, type: 3}
@@ -216,7 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTrainStation: {fileID: 2953177251969399190}
   mAnimationSpeed: 4
-  mDistance: 1.5
+  mDistance: 6
 --- !u!1 &6274350023553088974
 GameObject:
   m_ObjectHideFlags: 0
