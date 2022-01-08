@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -24,3 +25,4 @@ public class ResourceManagerEditor : Editor
         mResourceManager = (ResourceManager) target;
     }
 }
+#endif

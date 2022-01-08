@@ -260,6 +260,12 @@ public class GameDataHandler : MonoBehaviour
     {
         UpdateGameData();
         string jsonString = JsonUtility.ToJson(gameData);
+
+        if (!Directory.Exists(Application.persistentDataPath + @"/saves/"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + @"/saves/");
+        }
+
         File.WriteAllText(saveFile, jsonString);
     }
 }
