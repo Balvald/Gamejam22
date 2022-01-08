@@ -41,6 +41,12 @@ public class LineConstructor : MonoBehaviour
             station.GetComponent<TrainStation>().HasAdjacent(mSelectedStation) ||
             Vector3.Distance(mSelectedStation.transform.position, station.transform.position) > mMaxDistance)
         {
+            
+            Debug.Log(
+                "buidling Failed: " + 
+                (station == mSelectedStation) + ", " + 
+                station.GetComponent<TrainStation>().HasAdjacent(mSelectedStation) + ", " + 
+                (Vector3.Distance(mSelectedStation.transform.position, station.transform.position) > mMaxDistance));
             mSelectedStation = null;
             return;
         }
@@ -50,6 +56,7 @@ public class LineConstructor : MonoBehaviour
         {
             line = mSelectedStation.TryGetTrainLine(lineId);
             line.AddStation(station, mSelectedStation);
+            mSelectedStation = null;
             return;
         }
 
@@ -61,6 +68,7 @@ public class LineConstructor : MonoBehaviour
         var train = Instantiate(mTrainPrefab).GetComponent<Train>();
         train.transform.SetParent(line.transform, false);
         train.SetLine(line);
+        line.AddTrain(train);
 
         mIdCounter++;
 

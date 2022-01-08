@@ -18,6 +18,8 @@ public class Path
     [SerializeField, HideInInspector]
     bool autoSetControlPoints;
 
+    private List<float> mSegmentLength = new List<float>();
+
     public Path(Vector2 centre)
     {
         points = new List<Vector2>
@@ -28,18 +30,6 @@ public class Path
             centre + Vector2.right
         };
     }
-    /*
-    public Path(Vector2 pos1, Vector2 pos2)
-    {
-        points = new List<Vector2>
-        {
-            pos1,
-            pos1+ Vector2.right,
-            pos2+Vector2.down,
-            pos2
-        };
-    }
-    */
     public Path(Vector2 pos1, Vector2 pos2)
     {
         points = new List<Vector2>();
@@ -47,13 +37,7 @@ public class Path
         AddSegmentTrain(pos1,pos2);
     }
 
-    public Vector2 this[int i]
-    {
-        get
-        {
-            return points[i];
-        }
-    }
+    public Vector2 this[int i] => points[i];
 
     public bool IsClosed
     {
@@ -108,21 +92,8 @@ public class Path
         }
     }
 
-    public int NumPoints
-    {
-        get
-        {
-            return points.Count;
-        }
-    }
-
-    public int NumSegments
-    {
-        get
-        {
-            return points.Count / 3;
-        }
-    }
+    public int NumPoints => points.Count;
+    public int NumSegments => points.Count / 3;
 
     public void AddSegment(Vector2 anchorPos)
     {
@@ -142,6 +113,8 @@ public class Path
 
         points.InsertRange(0, new []{station, p.Item1, p.Item2});
 
+        mSegmentLength.Insert(0, GetEstSegmentLength(0));
+
     }
 
     public void AddSegmentTrain(Vector2 newStation)
@@ -156,6 +129,8 @@ public class Path
         points.Add(p.Item1);
         points.Add(p.Item2);
         points.Add(newStation);
+
+        mSegmentLength.Add(GetEstSegmentLength(NumSegments - 1));
     }
 
     public (Vector2, Vector2) GetNewPoints(Vector2 oldStation, Vector2 newStation)
@@ -379,6 +354,19 @@ public class Path
     int LoopIndex(int i)
     {
         return (i + points.Count) % points.Count;
+    }
+
+    private float GetEstSegmentLength(int i)
+    {
+        var p = GetPointsInSegment(i);
+        float controlNetLength = Vector2.Distance(p[0], p[1]) + Vector2.Distance(p[1], p[2]) + Vector2.Distance(p[2], p[3]);
+        var estimatedCurveLength = Vector2.Distance(p[0], p[3]) + controlNetLength / 2f;
+        return estimatedCurveLength;
+    }
+
+    public float GetLengthOfSegment(int i)
+    {
+        return mSegmentLength[i];
     }
 
 }

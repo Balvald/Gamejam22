@@ -19,11 +19,15 @@ public class TrainLine : MonoBehaviour
 
     public int ID => mIdentifier;
 
+    private List<Train> mTrains;
+
     // Start is called before the first frame update
     void Awake()
     {
         mPathCreator = GetComponent<PathCreator>();
         mRoadCreator = GetComponent<RoadCreator>();
+
+        mTrains = new List<Train>();
     }
 
     // Update is called once per frame
@@ -61,9 +65,13 @@ public class TrainLine : MonoBehaviour
         if (isInFront)
         {
             mStations.Insert(0, newStation);
+            ShiftTrains(1);
         }
-        mStations.Add(newStation);
-
+        else
+        {
+            mStations.Add(newStation);
+        }
+        
         oldStation.AddAdjacent(newStation);
         newStation.AddAdjacent(oldStation);
 
@@ -71,6 +79,14 @@ public class TrainLine : MonoBehaviour
         mPathCreator.AddPosition(newStation.transform.position, isInFront);
 
         mRoadCreator.UpdateRoad();
+    }
+
+    private void ShiftTrains(int amount)
+    {
+        foreach (var train in mTrains)
+        {
+            train.CurrentPosition += amount;
+        }
     }
 
     public List<TrainStation> GetMStations()
@@ -86,5 +102,10 @@ public class TrainLine : MonoBehaviour
     public bool IsLastStation(TrainStation station)
     {
         return station == FirstStation || station == LastStation;
+    }
+
+    public void AddTrain(Train train)
+    {
+        mTrains.Add(train);
     }
 }

@@ -10,9 +10,9 @@ public class Train : MonoBehaviour
     [SerializeField]
     private float mSpeed = 1;
 
-    private int mCurrentSegment;
+    private int mLastSegment;
 
-    private float mCurrentPosition;
+    public float CurrentPosition { get; set; }
 
     [SerializeField]
     public TrainMovement mMovement;
@@ -31,9 +31,6 @@ public class Train : MonoBehaviour
             return;
         }
 
-        mLastPosition = transform.position;
-        mCurrentPosition += mSpeed * Time.deltaTime * (mMovement == TrainMovement.Forwards ? 1 : -1);
-
         MoveTrain();
     }
 
@@ -46,8 +43,21 @@ public class Train : MonoBehaviour
     {
         var path = mAssignedTrainLine.GetPath();
 
-        var currentSegment = Mathf.Max(Mathf.Min(path.NumSegments - 1, Mathf.FloorToInt(mCurrentPosition)),0);
-        var t = mCurrentPosition - currentSegment;
+        var currentSegment = Mathf.Max(Mathf.Min(path.NumSegments - 1, Mathf.FloorToInt(CurrentPosition)),0);
+        var currSegLength = path.GetLengthOfSegment(currentSegment);
+
+        mLastPosition = transform.position;
+        CurrentPosition += mSpeed/currSegLength * Time.deltaTime * (mMovement == TrainMovement.Forwards ? 1 : -1);
+
+        var t = CurrentPosition - currentSegment;
+
+        if (mLastSegment != currentSegment)
+        {
+            mLastSegment = currentSegment;
+            StartCoroutine(WaitAtStation());
+            return;
+        }
+
         if (currentSegment == path.NumSegments-1 && t >= 1)
         {
             mMovement = TrainMovement.Backwards;
@@ -69,6 +79,16 @@ public class Train : MonoBehaviour
         rotation.x = transform.rotation.x;
         rotation.y = transform.rotation.y;
         transform.rotation = rotation;
+    }
+
+    private IEnumerator WaitAtStation()
+    {
+        var currentMovement = mMovement;
+        mMovement = TrainMovement.Idle;
+
+        yield return new WaitForSeconds(2);
+
+        mMovement = currentMovement;
     }
 
     public enum TrainMovement
