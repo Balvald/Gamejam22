@@ -31,7 +31,7 @@ public class TrainStation : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
     private Dictionary<ResourceType, ResourceGenerator> mResourceGenerators = new Dictionary<ResourceType, ResourceGenerator>();
 
-    private ResourceEfficiency mResourceEfficiency = ResourceEfficiency.Default;
+    public ResourceEfficiency mResourceEfficiency = ResourceEfficiency.Default;
 
     private ResourceManager mResourceManager;
 
@@ -273,6 +273,9 @@ public struct ResourceEfficiency
 
     public static ResourceEfficiency Default = new ResourceEfficiency(10,10,10,2);
 
+    public int Iron => Efficiencies[ResourceType.Iron];
+    public int Coal => Efficiencies[ResourceType.Coal];
+    public int Money => Efficiencies[ResourceType.Money];
     public ResourceEfficiency(int iron, int coal, int money, int speed = 3)
     {
         Efficiencies = new Dictionary<ResourceType, int>();
@@ -281,5 +284,14 @@ public struct ResourceEfficiency
         Efficiencies[ResourceType.Money] = money;
 
         Speed = speed;
+    }
+
+    public override string ToString()
+    {
+        var str = "Potential: \n" +
+                  (Iron != 0 ? "Iron: " + Iron + "\n" : "") +
+                  (Coal != 0 ? "Coal: " + Coal + "\n" : "") +
+                  (Money != 0 ? "Money: " + Money : "");
+        return str;
     }
 }

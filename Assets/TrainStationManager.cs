@@ -115,19 +115,21 @@ public class TrainStationManager : MonoBehaviour
         //currentTrainStation.transform.SetParent(transform, false);
         currentTrainStation.AddComponent<ToolTipAccessor>().UpdateToolTipString(currentTrainStation.name);
 
+        ResourceEfficiency resEff = new ResourceEfficiency(stationData.ironEfficiency, stationData.coalEfficiency, stationData.moneyEfficiency);
+
         if (!stationData.unlocked) // Station is not unlocked yet: Need to create Paywall
         {
             var newUnlockableStationPaywall = Instantiate(PayWallPrefab, currentTrainStationPosition, Quaternion.identity);
             newUnlockableStationPaywall.transform.SetParent(UnlockableStationParent.transform, true);
             newUnlockableStationPaywall.transform.localScale = new Vector3(1, 1, 1);
             newUnlockableStationPaywall.GetComponent<PayWall>().SetObjectToUnlock(currentTrainStation);
-            newUnlockableStationPaywall.AddComponent<ToolTipAccessor>().UpdateToolTipString(currentTrainStation.name + " (Not Owned)\n Cost:\nMoney: 100");
+            newUnlockableStationPaywall.AddComponent<ToolTipAccessor>().UpdateToolTipString(currentTrainStation.name + " (Not Owned)\n Cost:\nMoney: 100\n" + resEff);
             currentTrainStation.transform.SetParent(newUnlockableStationPaywall.transform, true);
         }
 
         TrainStation trainStation = currentTrainStation.GetComponent<TrainStation>();
 
-        ResourceEfficiency resEff = new ResourceEfficiency(stationData.ironEfficiency, stationData.coalEfficiency, stationData.moneyEfficiency);
+        
         // apply station data to Resource Efficiency Object
         trainStation.SetResourceEfficiency(resEff);
 
