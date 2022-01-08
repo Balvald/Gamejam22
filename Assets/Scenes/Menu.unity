@@ -1441,8 +1441,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Source of game icons for coal, iron, money: game-icons.net Lorc, Delapouite
-    & Contributors, CC BY 3.0'
+  m_text: 'Source of various game icons for coal, iron, money: game-icons.net, Authros:
+    Lorc, Delapouite & Contributors, used under CC BY 3.0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5390,8 +5390,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Source of game background: Blank map of Europe 1861.svg: User:Alphathon
-    derivative work: Furfur, CC BY-SA 4.0
+  m_text: 'Source of game background: Blank map of Europe 1861.svg: Authors: Alphathon,
+    derivative work: Furfur, used under CC BY-SA 4.0
 
     found at: https://de.wikipedia.org/wiki/Datei:Europa_1861.svg'
   m_isRightToLeft: 0
